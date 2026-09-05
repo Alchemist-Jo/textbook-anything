@@ -18,7 +18,7 @@ Use `booktabs` and wrapping columns for tables. Repeat headers on multipage tabl
 
 ## Read the input before setting the page
 
-The [deepresearch-skill](https://github.com/WncFht/agent-basic-skill/tree/main/skills/deepresearch-skill) provides a useful source-to-document workflow: inspect material in its original modality, connect claims to evidence, place figures inside the argument, and compile and inspect the final artifact. When available, use its complete skill for the requested research document task, with the textbook's audience, source boundaries, and typography requirements supplied as the brief.
+Read the source before deciding how it should appear on the page. A table may need to be redrawn for readability; a mathematical diagram may need its original notation preserved. Place the figure where the argument uses it, and keep its caption specific to the relationship being explained. Choose the layout for the reading task and inspect the compiled result.
 
 Keep production metadata and working source records separate from the student's main text. Preserve ordinary citations, scientifically relevant limitations, and attribution. A textbook does not need agent names, generation statistics, build logs, or editing history on its title page.
 

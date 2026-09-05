@@ -2,11 +2,11 @@
 
 Choose the requested format. Editable Markdown may be enough for a chapter; a typeset book may warrant LaTeX or another document system. Preserve an existing working toolchain unless changing it solves a concrete delivery problem.
 
-For a new PDF, read [typography](typography.md) and use an available document skill with its complete instructions. For research documents built from mixed source formats, `deepresearch-skill` supplies the document workflow; pass this package's textbook typography and reader-facing content requirements with the request.
+For a new PDF, use the [typography guidance](typography.md) and the included template as a starting point. Read each source in the form that preserves its meaning, bring relevant figures into the explanation, and check the final document after compilation.
 
-Give each figure a teaching purpose: a relationship, mechanism, comparison, or pattern the reader needs to see. Keep labels consistent with the text, identify schematic data, and use editable sources when practical. Colors should have consistent meanings and should not carry information alone.
+Decide what a figure should make easier to understand: a relationship, mechanism, comparison, or pattern that is cumbersome to describe in prose. Keep labels consistent with the text, identify schematic data, and use editable sources when practical. Colors should have consistent meanings and should not carry information alone.
 
-For a diagram that encodes quantities or dimensions geometrically, keep that encoding consistent. A transposed matrix swaps its axes; a time axis preserves order; a chart's scale matches the stated units. Abstract schematics may use non-proportional geometry when labels make the abstraction clear.
+For tensor diagrams, establish the objects, shapes, and axis meanings before arranging the page. Keep the formula legible, put shape labels next to their objects, and explain the computation in the caption. Equal dimensions should use consistent geometry; a transpose swaps its axes and a contraction removes the shared axis. Distinguish values, scores, indices, and masks when more than one appears. For other diagrams, use the visual encoding appropriate to the subject and make any schematic simplification clear.
 
 Use readable type, restrained emphasis, and enough room for equations and annotations. Break long expressions at logical boundaries. Keep captions and exercise parts attached to their context. Update contents, numbering, and cross-references in the final build.
 

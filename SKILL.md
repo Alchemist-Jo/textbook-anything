@@ -1,62 +1,64 @@
 ---
 name: textbook-anything
-description: Write, expand, or revise university STEM textbooks, course notes, and substantial teaching chapters from a topic, syllabus, papers, or drafts. Clarify the learner's goals, research prerequisite relationships, explain concepts and derivations, and develop linked exercises with solutions. Use for coherent teaching material, not a short summary, single-question answer, study schedule, or file conversion alone.
+description: Write, expand, or revise university STEM textbooks, course notes, and substantial teaching chapters from a topic, syllabus, papers, or drafts. Research prerequisites, explain concepts and derivations, and develop connected exercises with solutions. Use for coherent teaching material, not a short summary, single-question answer, study schedule, or file conversion alone.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Textbook Anything
 
-Build university STEM material a reader can learn from independently. A chapter needs a reason for its ideas to appear in that order, enough explanation to use them, and practice that reveals whether they were understood.
+Write for a reader who wants to understand the subject well enough to use it. Explain why a problem matters, how the argument works, and what changes when an assumption changes. The workflow and references in this package are sufficient to carry out the task; no companion skill is required.
 
-## Establish the teaching task
+## Find the right starting point
 
-Read the supplied material before proposing a structure. Identify the audience, prerequisites, learning goals, language, scope, content to preserve, source cutoff, and requested deliverables. Infer routine choices from context; ask only when a missing answer would materially change the work. A brief such as [templates/project-brief.md](templates/project-brief.md) is useful for a book, but unnecessary for a small revision.
+Read the supplied material before choosing a structure. Establish the reader's background, learning goal, language, scope, source cutoff, material to preserve, and requested output. Use what the user has already told you. For a substantial book, keep a short [teaching brief](templates/project-brief.md); a small revision rarely needs one.
 
-Respect the requested operation. A review produces findings; a chapter edit stays within that chapter and its affected references. Write or rebuild a whole book only when the request calls for it. Keep the original input available.
+If the background or goal is unclear, ask one or two focused questions, one at a time. Recommend a starting assumption: can the reader already derive a particular foundational result, or only recognize it? Should the chapter prepare them to explain the idea, solve unfamiliar problems, or implement the method? Settle the decisions that determine depth, then proceed.
 
-Use `grilling` for one or two focused opening questions when the audience or goal is unresolved: what can the reader already derive or implement, and what should they be able to do after this material? Ask one at a time with a recommended assumption, use existing answers, and settle those decisions before choosing the chapter's depth.
+Keep the operation in scope. A review returns located findings. A revision changes the requested material and its affected references. Preserve the original input.
 
-## Organize the subject
+## Research the learning sequence
 
-Use `deep-research` to establish the subject's coverage and prerequisite relationships before drafting a new structure. Give it the audience, scope, and questions about which concepts are required, where they are used, and which teaching sequences the sources support; turn the findings into a cited dependency map. For an existing structure, research only the dependencies affected by the revision. See [skill composition](references/skill-composition.md) for handoff details.
+Before drafting a new structure, investigate what the topic depends on. Compare established textbooks, actual course materials, and relevant primary sources. Trace a prerequisite to the argument or task that needs it; distinguish necessary knowledge from useful background. [Sources and coverage](references/sources.md) gives the research procedure, including how to resolve gaps and conflicting accounts.
 
-Arrange chapters around what the reader needs to understand or do next. When revising, track where retained material moves and explain substantive omissions. Preserve requested examples, conclusions, and exercises even when sections are merged.
+Arrange the chapters so readers encounter the needed ideas before using them. When an intuitive introduction must come before a full proof, make that choice explicit and return to the proof later. In a revision, keep track of where retained material moves. Merging two headings must not silently remove an example or result the user wanted to keep.
 
-Choose the teaching method to fit the STEM subject. A mathematical argument may need a derivation, a physics lesson a model and limiting case, and an engineering chapter an implementation or experiment. Include each where it serves the learning goal. The examples in this repository illustrate selected techniques, not a default syllabus.
+Let the subject determine the teaching method. A mathematical chapter may turn on a proof, a physics lesson on a model and its limits, and an engineering lesson on a design or implementation. Include equations, code, and experiments where they help the reader accomplish the goal.
 
-## Develop the material
+## Explain the ideas
 
-Introduce the problem before the machinery needed to solve it. Define unfamiliar terms where they first matter. Connect each major result to an explanation, example, application, or limitation that serves the learning goal. New sections should meet the surrounding material's teaching depth; equal page counts are unnecessary.
+Begin a section with the question its mathematics will answer. Introduce notation when it becomes useful, explain the decisive steps, and return to the meaning of the result. Spend more space where the reader has to make a new conceptual move; routine algebra can be brief.
 
-Use `sepia` for the language of the exposition and worked examples, following its professional route. Preserve technical conditions and useful textbook structure; keep the mathematical reasoning and exercise design under this skill's subject checks.
+Make a worked example a guided argument. Say why the chosen method applies, work through the difficult step, then interpret or check the answer. A useful transition identifies what has changed: a new condition, a remaining limitation, or a question the previous result allows us to ask.
 
-Read only the references needed for the task:
+Read [writing](references/writing.md) before drafting or revising prose. It covers explanations, examples, solutions, captions, Chinese and English expression, and a concrete editing pass. Preserve assumptions, quantities, attribution, and the strength of claims while improving the language.
 
-| Work | Reference |
+Use the other references when their work is needed:
+
+| Task | Reference |
 | --- | --- |
-| Use a syllabus, papers, external sources, or time-sensitive claims | [Sources and coverage](references/sources.md) |
-| Write or check mathematical arguments | [Derivations](references/derivations.md) |
-| Develop examples, practice, solutions, or assessment | [Exercises](references/exercises.md), including the Griffiths and supplied-example synthesis |
-| Supply code or experiments | [Code and experiments](references/code-and-experiments.md) |
-| Draft or edit explanatory prose | [Writing](references/writing.md) |
-| Produce figures, format a document, or check delivery | [Delivery](references/delivery.md) |
+| Check mathematical reasoning | [Derivations](references/derivations.md) |
+| Design practice and solutions | [Exercises](references/exercises.md) and [worked design examples](references/exercise-models.md) |
+| Supply implementations or experiments | [Code and experiments](references/code-and-experiments.md) |
+| Draw figures or produce the document | [Delivery](references/delivery.md) and [typography](references/typography.md) |
 
-Work out examples and solutions while writing the corresponding explanation. If a task is underdetermined, state the missing conditions or ask the reader to analyze the alternatives. Keep solutions separately locatable so the reader can attempt a problem first.
+For long work, complete a representative section early to establish depth, notation, and presentation. Continue using that standard unless the user has requested a checkpoint. Carry definition changes through explanations, figures, exercises, solutions, and code that depend on them.
 
-For long work, finish a representative section early to establish depth, notation, and presentation. Continue with that standard unless the user has requested a checkpoint. Carry definition changes through dependent explanations, figures, exercises, solutions, and code.
+## Give the reader something to work out
 
-## Review the actual result
+Choose exercises from the understanding they should reveal. A short question can check a new concept immediately. A longer problem can keep the same model or setting while asking the reader to derive a result, alter a condition, examine a limit, or check an implementation.
 
-Check coverage, reasoning, teaching value, and readability against the intended audience. Use numerical tests for claims they can test, and inspect the rendered document when layout is part of delivery. Compilation and file checks do not establish subject correctness.
+Solve the problem before accepting its wording. Ensure every part has enough information and that the solution answers it. Where a conclusion depends on a parameter or the solution is not unique, let that be part of the reasoning. Keep solutions separately locatable so readers can attempt the problem first.
 
-Record concrete defects with their locations, fix them, and recheck the affected material. Review the whole requested scope once it is complete; repeat a full review when broad changes or remaining defects justify it. A fixed number of review rounds is not a completion criterion.
+## Read and check the result
 
-Stop when the requested material is complete and known blocking defects are resolved. Missing source access, an untested experiment, or an unresolved argument remains explicit. Distinguish author review, independent review, tests, and experiments in any report; never describe one as another.
+Read the completed material as the intended student. Look for an unexplained symbol, a jump in reasoning, a repetitive paragraph, or an exercise whose solution uses something never taught. Fix concrete problems and revisit the affected material. Apply the language pass to the entire requested scope, including captions and answers.
 
-## Deliver
+Use numerical checks where they can expose a plausible error. Inspect the rendered document when layout is part of delivery. Compilation establishes that a file builds; it does not establish mathematical correctness. Review the whole requested scope when it is complete, and repeat broader checks only when changes or unresolved problems warrant them.
 
-Provide the requested artifact first, then editable sources and any necessary build instructions. Include code, solutions, and a short review record when they are part of the task. Keep process notes outside the teaching text. State what was checked and what remains unverified.
+## Deliver material the reader can use
 
-For PDF workflows, the optional local helpers are documented in [scripts/README.md](scripts/README.md). They do not install dependencies or require a particular subject. The supplied [multimodal textbook](examples/multimodal-learning/README.md) shows one finished document.
+Provide the requested artifact first, followed by editable source and the necessary build instructions. Include solutions, code, and a short review record when requested or needed for the handoff. Keep production notes outside the teaching text. Distinguish checks actually run from proposed experiments and unresolved questions.
+
+The [local helpers](scripts/README.md) support package checks, XeLaTeX builds, and PDF rendering. A different working toolchain is equally valid. The [example textbook](examples/multimodal-learning/README.md) and two short source examples show the kinds of material this workflow organizes.

@@ -2,66 +2,51 @@
 
 [English](README.md) | **简体中文**
 
-[![v0.1](https://img.shields.io/badge/version-v0.1-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/tag/v0.1.0) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.1](https://img.shields.io/badge/version-v0.1-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
-**面向大学理工科，从读者基础到完整解答，编写可以独立学习的教材。**
+**把想学的内容，写成一份讲得明白、可以动手做题的教材。**
 
-把一个主题、一份课纲或一组论文整理成连贯的教学材料：知识有先后，推导有依据，习题能检验理解。适用于全书编写、单章扩写和已有讲义修订。
+给一个主题，也可以附上课件、论文或已有讲义。textbook-anything 会根据读者基础安排章节，把公式的来由讲清楚，配上例题、图示和有联系的综合习题，最后交付 PDF 与可编辑源码。适合大学数学、物理、计算机和工程课程，可以写一整本，也可以只补好某一章。
 
-[阅读示例教材](examples/multimodal-learning/textbook.pdf) · [安装](#安装) · [查看 skill](SKILL.md)
+[阅读 166 页示例教材](examples/multimodal-learning/textbook.pdf) · [安装](#安装) · [查看 skill](SKILL.md)
 
 ![示例教材的封面、推导与习题页面](assets/textbook-preview.png)
 
-*《多模态学习与强化学习：理论、架构与实现》，中文，166 页。[示例说明](examples/multimodal-learning/README.md)。*
+*《多模态学习与强化学习：理论、架构与实现》。[查看示例](examples/multimodal-learning/README.md)。*
 
-## 工作方式
+## 怎样编写
 
-先明确读者已经掌握什么，以及读完后应当能够解释、推导或实现什么。各阶段复用已有 skill：
+读者看懂一道例题之后，能否独立处理稍有变化的问题，是这份 skill 关心的事。因此，讲解、推导和习题会围绕同一个学习目标展开。
 
-| 阶段 | 方法 | 产物 |
+| 目的 | 方法论 | 评估 |
 | --- | --- | --- |
-| 读者基础与学习目标 | 简短的 `grilling` 问答 | 明确的先修基础与学习目标 |
-| 知识范围与先修关系 | `deep-research` | 经核查的来源与知识依赖关系 |
-| 正文与例题 | `sepia` 的专业写作规则 | 保留技术条件、推理连贯的讲解 |
-| 习题与解答 | Griffiths 的教学结构与所附题目示范 | 随文练习、综合题及完整解答 |
-| 交付 | 适用的文档、绘图 skill 与本地工具 | 可编辑稿件及所需的 PDF、代码或图示 |
+| 确定讲解深度 | 用一两轮简短问答，明确读者已经会什么、希望学会什么 | 学习目标能否落实到具体的解释、推导或实现任务 |
+| 安排知识顺序 | 对照教材、课程与一手资料，追查每个概念在哪里被后续内容使用 | 必需的先修是否已经讲到，新增内容是否有可靠来源 |
+| 讲清正文与例题 | 从具体问题展开，在关键步骤解释为什么这样做，再说明结果的含义 | 读者能否跟上推理，公式之间是否缺少必要步骤 |
+| 设计习题与解答 | 围绕同一对象改变条件，结合推导、极限、反例和数值验证 | 题目是否可解，答案是否完整，是否考察了理解与迁移 |
+| 做好阅读与交付 | 统一符号、字体和图示，编译后检查实际页面 | 公式与图表是否清楚，源码能否重新构建 |
 
-习题分为及时检查新概念的随文题，以及联系多个知识点的章末综合题。综合题围绕同一对象组织推导、条件变化、极限或反例分析，并在适合时用数值计算验证。[题目设计参考](references/exercise-models.md)分别说明了 Griffiths《电动力学导论》和所附教材提供的启发。
-
-适用范围包括大学数学、物理、计算机与工程课程。符号、例子和实验要求随学科确定，多模态学习是仓库中的一个示例。
+随文练习帮助读者及时检查一个新概念；章末综合题则把前面学过的内容联系起来。比如，先求出一个模型的解，再改变边界条件，看结论怎样变化。需要编程时，让代码验证题目中的具体判断。[习题示范](references/exercise-models.md)中有更完整的说明。
 
 ## 安装
-
-使用 [Skills CLI](https://github.com/vercel-labs/skills)：
 
 ```sh
 npx skills add Alchemist-Jo/textbook-anything --skill textbook-anything -g
 ```
 
-按提示选择代理。若想先查看可安装内容，将 `-g` 换成 `--list`。仓库只有一个正式入口 `SKILL.md`，也可以将完整目录放入代理支持的 skill 目录。
-
-配套 skill 单独安装。优先复用环境中已有的 `grilling`、`deep-research` 和 `sepia`。[Sepia](https://github.com/Nanako0129/sepia) 与 [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) 提供各自的安装说明。各配套 skill 均通过完整入口调用。多种来源整合为研究文档时，可复用 [deepresearch-skill](https://github.com/WncFht/agent-basic-skill/tree/main/skills/deepresearch-skill) 的交付流程。[协作约定](references/skill-composition.md)说明各自的职责。
+按提示选择代理即可。教学流程、写作规范和交付说明都包含在这个 skill 中，无需另装配套 skill。
 
 ## 使用
 
-指定 `textbook-anything`，附上已有材料。在使用美元符号调用 skill 的代理中，可以这样写：
+直接说明主题、读者和想要的产物：
 
 ```text
-使用 $textbook-anything，为工科大二学生编写傅里叶分析一章。
-读者已学微积分和线性代数。先研究先修关系，讲清关键推导，
-加入完整例题和相互关联的综合习题，解答单独编排。交付 LaTeX 与 PDF。
+使用 textbook-anything，为工科大二学生编写傅里叶分析一章。
+读者已学微积分和线性代数。讲清关键推导，加入完整例题，
+再设计一组相互关联的综合习题，解答单独编排。交付 LaTeX 与 PDF。
 ```
 
-| 请求 | 处理范围 |
-| --- | --- |
-| 编写 | 从主题和资料形成全书或章节。 |
-| 扩写 | 补充缺失的解释、推导、例题或习题。 |
-| 修订 | 调整结构与内容，同步修改受影响的引用和配套材料。 |
-| 审查 | 给出带位置的问题，不修改原稿。 |
-
-这些都是对同一个 skill 的自然语言请求，无需记忆额外命令。
-
-修订已有稿件时，说明保留范围和主要问题即可：
+已有稿件也可以直接交给它：
 
 ```text
 使用 textbook-anything 修订这些讲义。保留原有主题，补全关键推导，
@@ -69,14 +54,14 @@ npx skills add Alchemist-Jo/textbook-anything --skill textbook-anything -g
 沿用当前文档格式。
 ```
 
-## 示例与工具
+只想检查时，可以要求“先审查，不修改”，结果会标出具体章节和问题位置。
 
-除[完整教材](examples/multimodal-learning/textbook.pdf)外，仓库还保留了[有限轨迹 GAE](examples/gae/main.tex)和[注意力与高斯流](examples/attention-flow/main.tex)两份短篇 LaTeX 示例，附共享数值代码和测试。[排版模板](references/typography.md)采用宋体正文、黑体标题，以及配套的西文与数学字体，为推导、图示和习题留出清晰的阅读层次。
+## 看看实例
 
-[阅读 GAE 示例](examples/gae/handout.pdf) · [阅读注意力与流匹配示例](examples/attention-flow/handout.pdf)
+仓库包含一份[完整教材](examples/multimodal-learning/textbook.pdf)，以及[有限轨迹 GAE](examples/gae/handout.pdf)、[注意力与条件流匹配](examples/attention-flow/handout.pdf)两份短篇实例。短篇附有 LaTeX 源码、数值代码和测试，方便查看推导、题目和实现如何对应。
 
 <details>
-<summary>查看两份排版实例</summary>
+<summary>展开查看：公式图示、综合习题与解答</summary>
 
 ![公式推导与计算图示](assets/example-derivations.png)
 
@@ -84,37 +69,27 @@ npx skills add Alchemist-Jo/textbook-anything --skill textbook-anything -g
 
 </details>
 
-```sh
-python3 scripts/check_skill.py
-python3 -m unittest discover -s examples/tests -v
-```
+[排版模板](references/typography.md)采用宋体正文、黑体标题，西文与数学使用配套字体。长公式按推理顺序换行，图中的符号与正文保持一致。PDF 构建和测试命令见[工具说明](scripts/README.md)。
 
-以上命令只需要 Python 标准库。PDF 编译需要 XeLaTeX，页面渲染需要 PyMuPDF。构建命令与依赖见[本地工具说明](scripts/README.md)。
+## 接下来
 
-## 目录
+目前是 v0.1，先把这版开放出来，欢迎试用。
 
-```text
-textbook-anything/
-├── SKILL.md                 # 教学流程与任务分流
-├── references/              # 资料、语言、习题与交付细则
-├── templates/               # 项目简表与理工科排版模板
-├── examples/                # 教材 PDF、短篇源码、代码与测试
-├── scripts/                 # 目录检查、PDF 编译与页面渲染
-└── agents/openai.yaml       # 展示信息
-```
+- 内容：补充不同理工科课程的例子，把难懂的推导和章节联系讲得更清楚。
+- 交付：改善字体、图示和分页，让 PDF 好读，源码也方便修改。
+- 考察：调整题目难度与递进，完善提示、解答和评分依据。
 
-## v0.1
-
-这是首个公开版本。后续围绕三个方向改进：
-
-- **内容：**补充理工科示例，改善讲解深度与章节联系。
-- **交付：**完善文档模板、图示排版与源码构建方式。
-- **考察：**改进题目递进、提示、解答与评分标准。
-
-反馈问题时，请附上章节或题号、具体问题，以及有助于判断的来源或推导。[提交 issue](https://github.com/Alchemist-Jo/textbook-anything/issues)。
+如果某一步看不懂、某道题条件不足，或某页排版不舒服，欢迎附上具体位置[提个 issue](https://github.com/Alchemist-Jo/textbook-anything/issues)。
 
 ## 致谢与许可
 
-[Sepia](https://github.com/Nanako0129/sepia)提供了语言处理与仓库布局参考。先修研究复用 [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) 中的 `deep-research`。习题组织借鉴 [Griffiths 的前言](https://assets.cambridge.org/97811084/20419/frontmatter/9781108420419_frontmatter.pdf)与作者提供的教材。文档交付参考了 [deepresearch-skill](https://github.com/WncFht/agent-basic-skill/tree/main/skills/deepresearch-skill)。配套 skill 和外部来源保留各自许可，本仓库不打包其原文。
+这份 skill 的写作与教学设计参考了以下工作，感谢作者们的分享：
 
-[MIT](LICENSE)。
+- [Sepia](https://github.com/Nanako0129/sepia)：贴合文体的语言表达、段落衔接和有变化的句子节奏。
+- [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)：资料核查与科技写作中对论据、措辞和结论范围的处理。
+- grilling：通过简短追问澄清读者基础与学习目标。
+- [deepresearch-skill](https://github.com/WncFht/agent-basic-skill/tree/main/skills/deepresearch-skill)：多种来源的阅读方法，以及图表与正文的组织方式。
+- [tensor-formula-viz](https://github.com/wdkns/wdkns-skills/blob/main/skills/tensor-formula-viz/SKILL.md)：张量运算、shape、维度语义与图形几何的对应表达。
+- [Griffiths《电动力学导论》](https://assets.cambridge.org/97811084/20419/frontmatter/9781108420419_frontmatter.pdf)：随文练习与章末综合题的教学安排。
+
+本项目采用 [MIT 许可](LICENSE)。外部作品保留各自许可。

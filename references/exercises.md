@@ -4,7 +4,7 @@ Read [exercise models](exercise-models.md) when designing a substantial problem 
 
 Start with the understanding the reader should demonstrate. Then choose a task that distinguishes that understanding from recall or pattern matching. Work out its solution before accepting the final wording.
 
-A worked example shows the decisions as well as the result. Explain why a method applies, expose the difficult step, and interpret the answer. Leave a meaningful part of the reasoning to the reader in a subsequent exercise.
+Let a worked example make the method understandable, then give the reader a related problem with something new to decide. Explain the method choice and interpret the result in the example. In the exercise, supply the setting clearly and leave the reasoning to the reader. Avoid filling the question with so many hints that only substitution remains.
 
 Linked subquestions can reuse one model, dataset, source passage, design, or case. A later part might alter an assumption, compare explanations, construct a counterexample, or apply the result in a new setting. Use the number of parts the problem needs. Unrelated questions grouped under one heading do not become an integrated exercise.
 
@@ -14,4 +14,4 @@ If assessment is requested, align the marking criteria with the learning goal. A
 
 Programming tasks need an observable contract: inputs, outputs, constraints, and a test or evaluation entry point. Experiments need a question and a feasible budget. See [code-and-experiments.md](code-and-experiments.md) when those elements are needed.
 
-Review difficulty through prerequisites and required reasoning. More subquestions, more algebra, or a longer answer does not by itself make an exercise more instructive.
+Judge difficulty by what the reader must recognize or work out. Check the wording as carefully as the solution: a short, precise question can ask for substantial reasoning, while a long question may still reduce to substitution. Keep the answer's tone explanatory, especially where an incorrect approach would appear plausible.

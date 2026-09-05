@@ -1,6 +1,6 @@
 # Derivations
 
-A useful derivation makes its decisive steps available to the intended reader. Repeatedly rewriting the same expression does not help; skipping a conditional expectation, change of variable, or optimization argument often does harm.
+Help the reader see why each important step follows. Before a long chain of equations, state what it will establish. At a change of variable, conditional expectation, or optimization step, explain the reason at the point of use. Finish by connecting the expression to the original question.
 
 For each important argument, establish the quantity sought, the objects and their domains, the assumptions, the starting result, and the justification for each non-obvious transformation. State the conclusion with its range of validity. Definitions can be given directly.
 

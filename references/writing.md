@@ -1,19 +1,53 @@
-# Explanatory writing
+# Writing that helps a reader understand
 
-Match the reader's background and the subject's register. Use the user's terminology and language preferences. Favor established terms, concrete subjects, and verbs that state what happens. Define unfamiliar terms before relying on them.
+A textbook should sound like a knowledgeable teacher taking a question seriously. Give readers enough guidance to follow a difficult step, and enough room to think when the next step is within reach. Use the subject's normal terminology without making every sentence read like a definition.
 
-Edit in this order: factual meaning, argument, paragraph connections, sentences, punctuation. Preserve assumptions, uncertainty, attribution, quantities, and quotation wording. Smoothness cannot compensate for a missing condition.
+## Let the explanation develop
 
-Give a paragraph one main job. Make its relation to the preceding material clear where needed, without announcing every transition. Use connective words only when the logical relationship exists. Repeat a technical noun when a pronoun would be ambiguous.
+Before writing a section, identify the question it answers and the point where the reader is likely to need help. Begin with the problem or the unfinished reasoning from the preceding section. Introduce a technical term when it helps answer that question, then use it consistently.
 
-Remove generic openings, promotional adjectives, repeated summaries, and commentary about how impressive or comprehensive the material is. Let the explanation and examples establish its value. Lists belong where the items are parallel or sequential; running arguments belong in prose.
+Give a paragraph a clear purpose: define an object, justify a step, compare alternatives, interpret a result, or explain a limitation. Connect paragraphs through the ideas themselves. A transition such as “The derivation assumed independent samples; we now need to account for their covariance” tells the reader what changes. “We will now explore this topic in greater depth” does not.
 
-Vary sentence length according to the reasoning. Do not shorten every sentence, decorate every paragraph, or impose a fixed number of examples. Conventional chapter structure and accurate technical vocabulary are useful.
+Allocate space according to conceptual difficulty. Spend time on why a method applies or why a tempting argument fails. Routine algebra may need only a line. Avoid giving every subsection the same length or repeating an introduction and a summary around every result.
 
-An analogy can help when its mapping and limits are explicit. Keep it distinct from the formal claim. Do not invent a causal explanation, anecdote, experiment, or author opinion to make prose seem more natural.
+## Guide the worked example
 
-For Chinese text, remove padded verbs such as “进行讨论” when “讨论” says the same thing. Avoid accumulated connectives and unclear nominal phrases. Preserve the formal register when the material needs it.
+Set up the problem with enough context to see what is being asked. Explain the choice of method before calculating, pause at the decisive step, and interpret the answer when the calculation is done. Where useful, check a limiting case or compare a second route to the result.
 
-Invoke the complete `sepia` skill for exposition and worked-example prose, passing the audience, language, operation, and technical statements to preserve. Follow its professional route and required references. If unavailable, follow the companion setup instructions in [skill composition](skill-composition.md). Keep its diagnostic report outside the teaching text; preserve useful textbook structure and all technical conditions.
+An example should make the reasoning available, not narrate every keystroke. In the supplied attention example, the useful explanation is that the normalization denominator depends on the score being differentiated. Naming that dependence helps the reader understand the quotient rule and the terms that follow.
 
-Keep personal addresses, editing history, validation logs, and release publicity outside the teaching text. Place substantive limitations where readers need them, and put production details in accompanying documentation.
+Solutions have a different rhythm from the first explanation. State the approach, show the needed steps, and answer the question asked. Refer back to an established result instead of repeating the whole lesson. Include an explanation when a sign, boundary condition, or non-unique solution could otherwise seem surprising.
+
+## Write natural technical sentences
+
+Use concrete subjects and verbs. Replace a nominal phrase when the verb says the same thing more directly. Keep enough variation in sentence length to match the argument: a longer sentence can carry a condition and its consequence; a short sentence can settle a point. Uniformly clipped prose is tiring too.
+
+Repeat a technical noun when a pronoun could refer to several objects. Keep familiar technical terms rather than cycling through near-synonyms. Use lists for parallel items or procedures, and connected prose for an argument.
+
+For Chinese, prefer “讨论”“计算”“比较” to padded forms such as “进行讨论” or “开展比较分析”. Remove accumulated connective words, but retain “因此” when it marks a real implication. A direct question can introduce a conceptual difficulty when answering it advances the lesson. Do not manufacture a question at the start of every paragraph.
+
+For English, write the proposition in natural English order rather than mirroring a Chinese sentence. Use “we” for a derivation the reader is following when it sounds natural, without beginning every sentence that way. Keep formal language where precision requires it; avoid promotional adjectives and elaborate synonyms for ordinary actions.
+
+## Match the wording to its place
+
+| Passage | What the language should do |
+| --- | --- |
+| Opening | Give the reader a concrete reason to study the section. |
+| Derivation | Explain the transformations that require judgment or a new assumption. |
+| Worked example | Make the choice of method and interpretation visible. |
+| Exercise | State the setting and task precisely while leaving the reasoning to the reader. |
+| Solution | Resolve every part, with enough intermediate work to learn from an error. |
+| Figure caption | Explain what the relationships or encodings show and where the reader should look. |
+| README or announcement | Say what people can try and where to find it, in a more conversational register. |
+
+For a figure, replace a caption such as “The figure shows the calculation process” with the actual relationship: “The shared axis is summed out; the output retains the query and channel axes.” Labels, captions, and surrounding prose should each add something rather than repeat the same sentence.
+
+## Edit without changing the claim
+
+Before revising, identify the factual statements, mathematical conditions, numerical values, quotations, and conclusions that must remain intact. Diagnose the actual problem in the passage, then repair the argument, paragraph connections, and sentences in that order. Remove repetition before adding explanation; add only the explanation the reasoning needs.
+
+Read the revision beside the source. An edit must not turn an approximation into an identity, remove a condition, change a quantity, or strengthen an empirical conclusion. If a substantive correction is needed, treat it as a content change and explain it outside the teaching text.
+
+Finish by reading the whole requested scope, including captions, problems, and answers. Look for vague openings, repetitive sentence frames, unsupported causal language, unnecessary summaries, and strings of sentences with the same rhythm. Correct the passages where these habits obscure the meaning. Do not inject mistakes, anecdotes, slang, or invented results to make the writing seem more personal.
+
+Keep working notes and editing history outside the textbook. References and scientifically meaningful limitations belong where the reader needs them. Public descriptions should introduce the material itself, without claims of popularity, completeness, or quality that the project has not established.

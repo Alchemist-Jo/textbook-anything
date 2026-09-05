@@ -1,6 +1,6 @@
 # Code and experiments
 
-Add an implementation when it explains or tests something the lesson needs. Prefer a small runnable example before proposing a large computation. Keep the conceptually important code visible and separate it from data loading or environment setup.
+Give code a specific question to answer. A small implementation can show how a formula acts on data or reveal a numerical issue that is difficult to see symbolically. Keep the relevant operations visible, explain their connection to the mathematics, and separate them from data loading or environment setup.
 
 State the interface, input domain, units or shapes, output meaning, and relevant numerical conventions. For stochastic work, record the seed and independent sampling unit. For differentiable models, explain which parameters are updated and where gradients stop.
 
