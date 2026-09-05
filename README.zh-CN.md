@@ -1,5 +1,7 @@
 # textbook-anything
 
+**推荐用法：安装此 skill 后，在网页端 GPT Pro 中使用。**
+
 [English](README.md) | **简体中文**
 
 [![v0.1](https://img.shields.io/badge/version-v0.1-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)

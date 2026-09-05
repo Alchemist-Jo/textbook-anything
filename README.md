@@ -1,5 +1,7 @@
 # textbook-anything
 
+**Recommended use: install this skill for use with GPT Pro in the web app.**
+
 **English** | [简体中文](README.zh-CN.md)
 
 [![v0.1](https://img.shields.io/badge/version-v0.1-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
