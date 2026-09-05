@@ -1,0 +1,89 @@
+% COMPONENT: problem_definition
+\section{高斯条件流与边缘速度}\label{sec:flow}
+条件流匹配使用可采样的路径构造回归目标。为分析回归得到的速度场，设 $X_0$ 与 $X_1$ 相互独立，分别服从 $\mathcal N(m_0,s_0^2)$ 和 $\mathcal N(m_1,s_1^2)$，其中 $s_0,s_1>0$。定义
+\begin{equation}\label{eq:flow_path}
+ X_t=(1-t)X_0+tX_1,\qquad U=X_1-X_0,\qquad 0\leq t\leq1.
+\end{equation}
+给定一个端点对时，路径导数为 $U$。模型只能观察 $t$ 和 $X_t$，因此需要分析在这些条件下能够预测的量。
+
+% COMPONENT: derivation
+\subsection{平方回归的条件最优解}
+固定 $t$，令 $h(x)=\E[U\mid X_t=x]$。把预测误差分成两部分：
+\begin{align}\label{eq:flow_projection}
+ \E[(v(x)-U)^2\mid X_t=x]
+ &=\E[((v(x)-h(x))+(h(x)-U))^2\mid X_t=x]\notag\\
+ &=(v(x)-h(x))^2
+   +2(v(x)-h(x))\E[h(x)-U\mid X_t=x]\notag\\
+ &\quad+\E[(h(x)-U)^2\mid X_t=x]\notag\\
+ &=(v(x)-h(x))^2+\Var(U\mid X_t=x).
+\end{align}
+第二行的交叉项为零，因为 $h$ 是条件均值。最后一项与预测函数 $v$ 无关。因此，平方回归的最优预测为 $v(t,x)=\E[U\mid X_t=x]$。
+
+\subsection{由联合矩推导速度场}
+线性期望和端点独立性分别给出
+\begin{align}\label{eq:flow_moments}
+ m_t:=\E[X_t]&=(1-t)m_0+tm_1,\notag\\
+ q_t:=\Var(X_t)&=(1-t)^2s_0^2+t^2s_1^2,\notag\\
+ c_t:=\Cov(U,X_t)
+ &=\Cov(X_1-X_0,(1-t)X_0+tX_1)\notag\\
+ &=t\Var(X_1)-(1-t)\Var(X_0)\notag\\
+ &=ts_1^2-(1-t)s_0^2.
+\end{align}
+两个交叉协方差因独立性为零。$q_t$ 在整个区间内为正，后续除法有定义。
+
+为了求条件均值，定义残差
+\begin{equation}\label{eq:flow_residual}
+ R=U-(m_1-m_0)-\frac{c_t}{q_t}(X_t-m_t).
+\end{equation}
+它满足 $\E[R]=0$，并且
+\begin{align}\label{eq:flow_residual_cov}
+ \Cov(R,X_t)
+ &=\Cov(U,X_t)-\frac{c_t}{q_t}\Var(X_t)\notag\\
+ &=c_t-\frac{c_t}{q_t}q_t=0.
+\end{align}
+$(R,X_t)$ 是高斯变量的线性变换，所以仍联合高斯。联合高斯变量的不相关性推出独立性，故 $\E[R\mid X_t]=0$。对式\eqref{eq:flow_residual}取条件期望，得到
+\begin{equation}\label{eq:flow_velocity}
+ v(t,x)=m_1-m_0+\frac{c_t}{q_t}(x-m_t).
+\end{equation}
+这里的 $c_t/q_t$ 来自条件回归，它随时刻变化。
+
+\subsection{解析流映射}
+令 $s_t=\sqrt{q_t}$。由 $q_t'=2c_t$ 得到 $s_t'=c_t/s_t$。考虑从初值 $x_0$ 出发的映射
+\begin{equation}\label{eq:flow_map}
+ \Phi_t(x_0)=m_t+\frac{s_t}{s_0}(x_0-m_0).
+\end{equation}
+对时间求导，并把 $\Phi_t-m_t$ 代回去：
+\begin{align}\label{eq:flow_ode_check}
+ \frac{\mathrm d\Phi_t}{\mathrm dt}
+ &=m_1-m_0+\frac{c_t}{s_ts_0}(x_0-m_0)\notag\\
+ &=m_1-m_0+\frac{c_t}{q_t}(\Phi_t-m_t)\notag\\
+ &=v(t,\Phi_t).
+\end{align}
+该映射满足 $\Phi_0(x_0)=x_0$。若初值服从 $\mathcal N(m_0,s_0^2)$，其仿射变换在时刻 $t$ 的均值和方差为 $m_t,q_t$，与训练路径的边缘分布一致。
+
+训练路径的端点采用独立采样；ODE 映射的末点由初点确定。两种构造的边缘分布一致，端点联合分布可以不同。单条生成轨迹不能由随机抽取的端点对直接确定。
+
+% COMPONENT: worked_example
+\begin{worked}{例题：相同端点分布的非恒定路径}
+令 $m_0=m_1=0$、$s_0=s_1=1$。初始与最终分布均为标准高斯，但中间方差为 $q_t=(1-t)^2+t^2$，在 $t=1/2$ 时等于 $1/2$。因此，解析流为 $\Phi_t(x_0)=\sqrt{q_t}\,x_0$。从 $x_0=1$ 出发，轨迹经过 $1/\sqrt2$ 后返回 $1$。相同的端点分布没有唯一确定中间路径。
+\end{worked}
+
+% COMPONENT: implementation
+\subsection{数值积分与误差}
+Euler 方法在当前状态计算速度，再前进一个时间步。中点方法先预测半步状态，再用该位置的速度更新：
+\begin{align}\label{eq:flow_solvers}
+ x_{n+1}^{\rm Euler}&=x_n+h\,v(t_n,x_n),\notag\\
+ \widetilde x_{n+1/2}&=x_n+\tfrac h2 v(t_n,x_n),\notag\\
+ x_{n+1}^{\rm midpoint}&=x_n+h\,v(t_n+\tfrac h2,\widetilde x_{n+1/2}).
+\end{align}
+本例中速度场光滑，可以使用解析末点比较误差。比较时固定初值与高斯参数，只改变方法或步数。该实验检验数值积分，不涉及模型训练误差。
+
+% COMPONENT: exercise
+\subsection{综合习题}\label{prob:flow}
+\textbf{问题 2：条件回归、流映射与采样。} 沿用独立高斯端点和线性路径。
+\begin{enumerate}
+\item\label{part:flow-a} 从条件平方误差出发求最优速度。先计算 $m_t,q_t,c_t$，再构造与 $X_t$ 不相关的高斯残差，逐步推出式\eqref{eq:flow_velocity}。若去掉联合高斯条件，不相关是否足以推出条件残差均值为零？构造一个反例。
+\item\label{part:flow-b} 验证式\eqref{eq:flow_map}满足速度场 ODE，求其最终映射。比较 ODE 端点对的协方差与训练端点对的协方差，并解释两者为何可以具有相同边缘分布。
+\item\label{part:flow-c} 令 $m_0=m_1=0$、$s_0=s_1=1$。分析 $t=0,1/2,1$ 的方差和速度。说明由相同的起止分布能否唯一推断中间路径；给出另一条满足相同边界分布的路径。
+\item\label{part:flow-d} 实现 \texttt{gaussian\_velocity}、\texttt{gaussian\_flow} 和 \texttt{integrate\_flow}。时间范围为 $[0,1]$，标准差严格为正。固定 $x_0=1.3,m_0=0,m_1=2,s_0=s_1=1$，比较 50 与 100 步 Euler 误差，再与中点法比较。用有限差分验证解析流的时间导数。报告误差与计算次数，不把结果推广到任意学习速度场。
+\end{enumerate}

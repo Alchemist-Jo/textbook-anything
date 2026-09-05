@@ -1,0 +1,4 @@
+interface:
+  display_name: "Textbook Anything"
+  short_description: "Write and revise textbooks, chapters, and course notes"
+  default_prompt: "Use $textbook-anything to develop teaching material from these sources for the specified audience, with explanations, examples, and exercises in the requested format."

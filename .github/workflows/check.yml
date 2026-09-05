@@ -1,0 +1,21 @@
+name: Check skill and examples
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check skill identity and links
+        run: python3 scripts/check_skill.py
+      - name: Run numerical example tests
+        run: python3 -m unittest discover -s examples/tests -v

@@ -1,0 +1,55 @@
+% Shared XeLaTeX preamble for university STEM handouts.
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=24mm,headheight=16pt,headsep=9mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs,array,tabularx,xcolor}
+\usepackage{fontspec,unicode-math}
+\setmainfont{texgyrepagella}[Extension=.otf,UprightFont=*-regular,
+  BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,
+  BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Scale=MatchLowercase]
+\setmonofont{lmmono10-regular.otf}[Scale=MatchLowercase]
+\setmathfont{texgyrepagella-math.otf}
+\usepackage{tikz,fancyhdr,enumitem,needspace}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[most]{tcolorbox}
+\usepackage[font=small,labelfont=bf,labelsep=quad]{caption}
+\usepackage[unicode,colorlinks=true,linkcolor=black,urlcolor=Accent,citecolor=Accent]{hyperref}
+\usepackage{xurl}
+\definecolor{Accent}{HTML}{315A66}
+\definecolor{Ink}{HTML}{202A30}
+\definecolor{Muted}{HTML}{58666D}
+\definecolor{Light}{HTML}{F5F7F7}
+\color{Ink}
+\ctexset{
+  section={format=\Large\sffamily\bfseries\color{Accent},beforeskip=2.0ex plus .5ex,afterskip=.9ex},
+  subsection={format=\large\sffamily\bfseries,beforeskip=1.6ex plus .4ex,afterskip=.65ex}
+}
+\linespread{1.20}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.25em}
+\setlength{\abovedisplayskip}{10pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{10pt plus 2pt minus 2pt}
+\setlength{\emergencystretch}{1em}
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.18}
+\setlist[enumerate]{label=(\alph*),leftmargin=2.2em,itemsep=.5em,topsep=.6em}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\newenvironment{worked}[1]{%
+  \begin{tcolorbox}[enhanced,breakable,colback=Light,colframe=Accent!35,
+    boxrule=0pt,borderline west={.7pt}{0pt}{Accent!60},arc=0mm,
+    left=9pt,right=9pt,top=8pt,bottom=8pt,title={#1},
+    colbacktitle=Light,coltitle=Accent,fonttitle=\sffamily\bfseries]
+}{\end{tcolorbox}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{Muted}\handouttitle}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{.25pt}
+\newcommand{\makehandouttitle}{%
+  \begingroup\raggedright
+  {\LARGE\sffamily\bfseries\color{Ink}\handouttitle\par}
+  \vspace{.8em}{\color{Accent}\rule{24mm}{.6pt}}\par
+  \endgroup\vspace{.7em}
+}

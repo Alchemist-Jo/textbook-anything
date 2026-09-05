@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+build/
+dist/
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

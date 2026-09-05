@@ -1,0 +1,123 @@
+% COMPONENT: problem_definition
+\section{跨模态注意力与掩码}\label{sec:attention}
+设文本表示为 $X\in\R^{N_q\times d_t}$，视觉表示为 $Z\in\R^{N_v\times d_v}$。以下只考虑一个样本和一个注意力头。批维和头维可以在外层独立重复，不改变本节的矩阵收缩。
+
+对两个模态分别进行线性投影：
+\begin{align}\label{eq:att_projection}
+ Q&=XW_Q\in\R^{N_q\times d_k},&
+ K&=ZW_K\in\R^{N_v\times d_k},&
+ V&=ZW_V\in\R^{N_v\times d_o}.
+\end{align}
+其中 $W_Q\in\R^{d_t\times d_k}$，$W_K\in\R^{d_v\times d_k}$，$W_V\in\R^{d_v\times d_o}$。$Q$ 和 $K$ 使用相同的通道维数，以便计算内积；输出通道数 $d_o$ 可以不同。
+
+记 $J_i$ 为第 $i$ 个文本位置允许访问的视觉位置集合，并假设 $J_i\ne\varnothing$。注意力分数、概率和输出分别为
+\begin{align}\label{eq:att_forward}
+ S&=QK^\top/\sqrt{d_k},\notag\\
+ P_{ij}&=\begin{cases}
+ \exp(S_{ij})\big/\displaystyle\sum_{l\in J_i}\exp(S_{il}),&j\in J_i,\\
+ 0,&j\notin J_i,
+ \end{cases}\notag\\
+ Y_i&=\sum_{j\in J_i}P_{ij}V_j.
+\end{align}
+$S$ 保存实数分数，$P$ 保存归一化概率；访问集合由布尔掩码表示。输出 $Y\in\R^{N_q\times d_o}$ 的每一行是对应视觉值向量的加权和。
+
+% COMPONENT: figure
+\begin{center}
+\begin{tikzpicture}[x=1mm,y=1mm,every node/.style={font=\small}]
+\node at (66,42) {$Y=PV$};
+% P: face height Nq=18, width Nv=30; masked cells remain white.
+\foreach \r/\lim/\tone in {0/4/42,1/5/30,2/3/65}{
+ \foreach \c in {0,1,2,3,4}{
+  \ifnum\c<\lim
+   \fill[Accent!\tone,rounded corners=.35pt] (6*\c+.25,6*\r+.25) rectangle (6*\c+5.75,6*\r+5.75);
+  \fi
+ }}
+\draw[gray!65,line width=.3pt] (0,0) rectangle (30,18);
+\node at (15,-6) {$P$};\node[text=Muted] at (15,-12) {$N_q\times N_v$};
+\node[font=\Large] at (43,12) {$\times$};
+% V: face height Nv=30, width do=24.
+\foreach \r/\a/\b/\c/\d in {0/32/68/46/55,1/60/40/75/35,2/48/72/30/65,3/70/35/58/42,4/38/62/45/76}{
+ \foreach \col/\tone in {0/\a,1/\b,2/\c,3/\d}{
+  \fill[orange!\tone!gray!45,rounded corners=.35pt] (56+6*\col+.25,6*\r+.25) rectangle (56+6*\col+5.75,6*\r+5.75);
+ }}
+\draw[gray!65,line width=.3pt] (56,0) rectangle (80,30);
+\node at (68,-6) {$V$};\node[text=Muted] at (68,-12) {$N_v\times d_o$};
+\node[font=\Large] at (94,12) {$=$};
+\foreach \r/\a/\b/\c/\d in {0/35/65/48/58,1/55/38/72/44,2/63/50/32/69}{
+ \foreach \col/\tone in {0/\a,1/\b,2/\c,3/\d}{
+  \fill[orange!\tone!gray!45,rounded corners=.35pt] (108+6*\col+.25,6*\r+.25) rectangle (108+6*\col+5.75,6*\r+5.75);
+ }}
+\draw[gray!65,line width=.3pt] (108,0) rectangle (132,18);
+\node at (120,-6) {$Y$};\node[text=Muted] at (120,-12) {$N_q\times d_o$};
+\node[anchor=north west,fill=Light,text width=132mm,inner sep=7pt,align=left] at (-2,-22) {\textbf{维度}\quad $N_q$ 为查询数，$N_v$ 为视觉位置数，$d_o$ 为输出通道数。\\[3pt]
+\textbf{对象}\quad $P$ 为概率，留白位置不可访问；$V,Y$ 为实数特征。\\[3pt]
+\textbf{计算}\quad 乘法沿 $N_v$ 求和。格子仅表示轴结构与支持集。};
+\end{tikzpicture}
+\end{center}
+\noindent\small 图 1：$P$ 的列轴与 $V$ 的行轴使用相同长度，输出保留查询轴和输出通道轴。\normalsize
+
+% COMPONENT: derivation
+\subsection{从概率归一化到反向传播}
+设标量损失为 $L$，上游梯度为 $G_i=\partial L/\partial Y_i$。由 $Y_i=\sum_jP_{ij}V_j$，先求
+\begin{equation}\label{eq:att_probability_gradient}
+ \frac{\partial L}{\partial P_{ij}}=G_i^\top V_j.
+\end{equation}
+下面固定一行 $i$。对允许访问的 $j,k$，将 softmax 写成分子除以归一化常数，并使用商法则：
+\begin{align}\label{eq:softmax_jacobian}
+ \frac{\partial P_{ij}}{\partial S_{ik}}
+ &=\frac{\exp(S_{ij})\mathbf1[j=k]\sum_l\exp(S_{il})
+       -\exp(S_{ij})\exp(S_{ik})}
+       {\left(\sum_l\exp(S_{il})\right)^2}\notag\\
+ &=P_{ij}\mathbf1[j=k]-P_{ij}P_{ik}\notag\\
+ &=P_{ij}\bigl(\mathbf1[j=k]-P_{ik}\bigr).
+\end{align}
+求和只遍历 $J_i$。若 $k\notin J_i$，该分数未进入归一化，导数为零。把上式代入链式法则，得到
+\begin{align}\label{eq:att_score_gradient}
+ D_{ik}:=\frac{\partial L}{\partial S_{ik}}
+ &=\sum_{j\in J_i}(G_i^\top V_j)P_{ij}
+       \bigl(\mathbf1[j=k]-P_{ik}\bigr)\notag\\
+ &=P_{ik}\left(G_i^\top V_k-\sum_{j\in J_i}P_{ij}G_i^\top V_j\right)\notag\\
+ &=P_{ik}G_i^\top(V_k-Y_i).
+\end{align}
+这一形式直接说明每行分数梯度之和为零，因为概率加权的 $V_k-Y_i$ 之和为零。因此，对同一行所有分数加上同一个常数，不改变输出。
+
+进一步对 $S_{ij}=\sum_aQ_{ia}K_{ja}/\sqrt{d_k}$ 求导，可得到矩阵形式：
+\begin{align}\label{eq:att_tensor_gradient}
+ \frac{\partial L}{\partial Q_{ia}}
+ &=\sum_jD_{ij}\frac{K_{ja}}{\sqrt{d_k}},
+ &\frac{\partial L}{\partial Q}&=DK/\sqrt{d_k},\notag\\
+ \frac{\partial L}{\partial K_{ja}}
+ &=\sum_iD_{ij}\frac{Q_{ia}}{\sqrt{d_k}},
+ &\frac{\partial L}{\partial K}&=D^\top Q/\sqrt{d_k},\notag\\
+ \frac{\partial L}{\partial V_{jb}}
+ &=\sum_iP_{ij}G_{ib},
+ &\frac{\partial L}{\partial V}&=P^\top G.
+\end{align}
+从逐元素求和可以分别检查收缩轴与转置。若视觉编码器需要更新，还需沿 $K=ZW_K$ 和 $V=ZW_V$ 将两个分支的梯度相加。
+
+% COMPONENT: implementation
+\subsection{数值实现与监督位置}
+计算 softmax 时，可以先减去本行允许访问分数的最大值，再取指数。该操作利用平移不变性减少指数溢出。全遮蔽行没有归一化分母；本章接口对此抛出异常。其他实现采用特殊约定时，需要同时说明输出和梯度。
+
+注意力掩码决定可以访问哪些位置。监督掩码决定哪些预测计入损失。某个视觉位置即使不承担直接预测目标，仍可能通过被答案位置访问而接收梯度。数据接口因此应分别记录这两类掩码，并独立测试。
+
+% COMPONENT: worked_example
+\begin{worked}{例题：两位置注意力的分数梯度}
+令分数为 $(0,\log3)$，两个标量值为 $(-1,3)$。概率为 $(1/4,3/4)$，输出为 $Y=2$。取目标值为 $1$，损失 $L=(Y-1)^2/2$，上游梯度 $G=1$。由式\eqref{eq:att_score_gradient}得到
+\begin{equation}\label{eq:att_example}
+ D_1=\tfrac14(-1-2)=-\tfrac34,\qquad
+ D_2=\tfrac34(3-2)=\tfrac34.
+\end{equation}
+两项之和为零。若只允许访问第一个位置，则概率固定为 $(1,0)$，分数梯度为零；此时 $Y=-1$、$G=-2$，值分支仍有梯度 $(-2,0)$。
+\end{worked}
+
+% COMPONENT: exercise
+\subsection{综合习题}\label{prob:attention}
+\textbf{问题 1：归一化、访问集合与梯度。} 沿用单头跨模态注意力的定义。
+\begin{enumerate}
+\item\label{part:att-a} 引入温度 $\tau>0$，令允许位置的概率正比于 $\exp(S_{ij}/\tau)$。从商法则推导对原始分数 $S$ 的导数，并证明每行分数梯度之和为零。分析 $\tau\to\infty$ 的概率极限。若最大分数唯一，$\tau\to0^+$ 时分数梯度有何极限？说明唯一性条件的作用。
+\item\label{part:att-b} 完成两位置例题中的值梯度计算。只保留一个允许位置时，哪些梯度变为零，哪些仍可非零？说明条件。
+\item\label{part:att-c} 假设仅答案位置计入监督损失。用本章梯度表达式说明没有直接监督标签的视觉位置仍可能接收梯度，并给出梯度为零的一种情形。
+\item\label{part:att-d} 实现 \texttt{masked\_softmax} 与 \texttt{softmax\_vjp}。接口输入为一维有限实数和布尔掩码；输出长度不变。全遮蔽行抛出异常。用中心差分检验导数，再测试大分数、精确零支持集和常量平移。
+\item\label{part:att-e} 同时重排 $K$、$V$ 和掩码的视觉位置轴，证明 $Y$ 不变。仅重排 $V$ 时构造一个结果变化的例子。说明这两个测试分别检验了什么。
+\end{enumerate}

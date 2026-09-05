@@ -1,0 +1,98 @@
+% COMPONENT: problem_definition
+\section{有限轨迹上的回报估计}\label{sec:gae}
+设采样缓冲区从时刻 $t$ 起包含 $m\geq1$ 个连续转移。奖励为 $r_t,\ldots,r_{t+m-1}$，价值估计为 $V_t,\ldots,V_{t+m}$。本节首先假设这段数据没有跨越环境重置；终止与时间截断在下一节处理。折扣因子和混合参数满足 $0\leq\gamma,\lambda\leq1$。
+
+$n$ 步目标包含已经观测到的奖励，以及第 $n$ 步后的价值估计。减去当前价值，得到优势估计
+\begin{equation}\label{eq:nstep}
+ A_t^{(n)}=\sum_{j=0}^{n-1}\gamma^j r_{t+j}+\gamma^n V_{t+n}-V_t,
+ \qquad 1\leq n\leq m.
+\end{equation}
+这个表达式的边界价值只出现一次。为了得到可以高效递推的形式，定义 TD 残差 $\delta_k=r_k+\gamma V_{k+1}-V_k$，并展开两个相邻残差：
+% COMPONENT: derivation
+\begin{align}\label{eq:telescoping}
+ \delta_t+\gamma\delta_{t+1}
+ &=r_t+\gamma V_{t+1}-V_t
+   +\gamma r_{t+1}+\gamma^2V_{t+2}-\gamma V_{t+1}\notag\\
+ &=r_t+\gamma r_{t+1}+\gamma^2V_{t+2}-V_t.
+\end{align}
+中间的 $V_{t+1}$ 项相消。加入第 $j$ 个残差时，会以同样方式消去上一项的边界价值。对 $n$ 归纳可得
+\begin{equation}\label{eq:nstep_residual}
+ A_t^{(n)}=\sum_{j=0}^{n-1}\gamma^j\delta_{t+j}.
+\end{equation}
+
+\subsection{有限混合权重}
+为了组合不同长度的目标，对前 $m-1$ 个目标使用几何权重，将剩余权重赋给最长目标：
+\begin{equation}\label{eq:finite_mixture}
+ A_t^{(\lambda,m)}=(1-\lambda)\sum_{n=1}^{m-1}\lambda^{n-1}A_t^{(n)}
+                 +\lambda^{m-1}A_t^{(m)}.
+\end{equation}
+当 $0\leq\lambda<1$ 时，有限几何和给出
+\begin{align}\label{eq:weight_sum}
+ (1-\lambda)\sum_{n=1}^{m-1}\lambda^{n-1}+\lambda^{m-1}
+ &=(1-\lambda)\frac{1-\lambda^{m-1}}{1-\lambda}+\lambda^{m-1}\notag\\
+ &=1-\lambda^{m-1}+\lambda^{m-1}=1.
+\end{align}
+当 $\lambda=1$ 时，式\eqref{eq:finite_mixture}直接将全部权重赋给最长目标，不需要使用分母为零的几何和表达式。
+
+代入式\eqref{eq:nstep_residual}后，残差 $\gamma^j\delta_{t+j}$ 出现在所有 $n\geq j+1$ 的目标中。先取 $0\leq\lambda<1$。对于 $0\leq j\leq m-2$，其权重为
+\begin{align}\label{eq:coefficient}
+ w_j&=(1-\lambda)\sum_{n=j+1}^{m-1}\lambda^{n-1}+\lambda^{m-1}\notag\\
+ &=(1-\lambda)\lambda^j\frac{1-\lambda^{m-1-j}}{1-\lambda}+\lambda^{m-1}\notag\\
+ &=\lambda^j-\lambda^{m-1}+\lambda^{m-1}=\lambda^j.
+\end{align}
+最后一个残差只出现在最长目标中，系数为 $w_{m-1}=\lambda^{m-1}$。当 $\lambda=1$ 时，直接检查最长目标可知每个残差的混合权重为一，与 $w_j=\lambda^j$ 一致。由此得到广义优势估计（generalized advantage estimation，GAE）的有限残差形式和后向递推：
+\begin{align}\label{eq:gae_recursion}
+ A_t^{(\lambda,m)}
+ &=\sum_{j=0}^{m-1}(\gamma\lambda)^j\delta_{t+j}\notag\\
+ &=\delta_t+\gamma\lambda\sum_{j=0}^{m-2}(\gamma\lambda)^j\delta_{t+1+j}\notag\\
+ &=\delta_t+\gamma\lambda A_{t+1}^{(\lambda,m-1)}.
+\end{align}
+定义缓冲区外的尾项 $A_{t+m}^{(\lambda,0)}=0$。$m=1$ 时只有一个 TD 残差；$\lambda=0$ 时采用一步估计；$\lambda=1$ 时采用最长可用目标。这些结论均可直接从有限表达式检验。
+
+% COMPONENT: implementation
+\section{边界条件与实现}\label{sec:boundary}
+环境真正终止后没有未来回报。外部时间截断只停止本次采样，原任务仍可具有后续价值。实现时因此需要分别控制自举项与残差递推。若时限属于任务定义，剩余时间需纳入状态，耗尽时可构成真正终止。
+
+记 $d_k$ 为真正终止标记，$u_k$ 为外部截断标记。令 $V_{k+1}^{\mathrm{final}}$ 表示重置前真实后继观测的价值。定义
+\begin{align}\label{eq:masks}
+ b_k&=1-d_k, & c_k&=1-(d_k\lor u_k),\notag\\
+ \delta_k&=r_k+\gamma b_kV_{k+1}^{\mathrm{final}}-V_k, &
+ A_k&=\delta_k+\gamma\lambda c_k A_{k+1}.
+\end{align}
+$b_k$ 决定未来价值是否保留；$c_k$ 决定当前残差是否能连接到缓冲区下一项。时间截断时，$b_k=1$ 且 $c_k=0$。在自动重置环境中，重置后的初始观测属于下一条轨迹，不能代替 $V_{k+1}^{\mathrm{final}}$。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex, every node/.style={font=\small}, node distance=14mm]
+\node[draw=Accent!65,fill=Accent!7,minimum width=29mm,minimum height=10mm] (a) {当前状态 $s_k$};
+\node[draw=Accent!65,fill=Accent!7,minimum width=36mm,minimum height=10mm,right=of a] (b) {真实后继 $s_{k+1}^{\rm final}$};
+\node[draw=gray,minimum width=30mm,minimum height=10mm,right=19mm of b] (c) {重置后状态};
+\draw[->] (a)--node[above] {$r_k,a_k$}(b);
+\draw[->,dashed] (b)--node[above] {重置}(c);
+\node[below=7mm of b,text=Accent] {价值用于自举};
+\node[below=7mm of c,text=Muted] {递推在此分开};
+\end{tikzpicture}
+\end{center}
+\noindent\small 图 1：时间截断保留真实后继价值，优势递推在重置前结束。\normalsize
+
+% COMPONENT: worked_example
+\begin{worked}{例题：真正终止与时间截断}
+取 $\gamma=0.9,\lambda=0.8$，奖励为 $(1,2,3)$，当前价值为 $(0.5,0.4,0.2)$，最后一步真正终止。TD 残差依次为 $(0.86,1.78,2.8)$。使用 $\gamma\lambda=0.72$，有
+\begin{align}\label{eq:gae_example}
+ A_2&=2.8,\notag\\
+ A_1&=1.78+0.72\times2.8=3.796,\notag\\
+ A_0&=0.86+0.72\times3.796=3.59312.
+\end{align}
+价值目标为 $A+V=(4.09312,4.196,3)$。若末步改为时间截断且真实后继价值为 $5$，末步残差变为 $7.3$。此时 $A_1=7.036$，$A_0=5.92592$，递推仍不跨越重置。
+\end{worked}
+
+% COMPONENT: exercise
+\section{综合习题}\label{sec:gae_problems}
+\subsection*{问题 1：有限目标、边界与误差传播}\label{prob:gae}
+沿用本章有限轨迹设定。实现中只缓存奖励、当前价值、真实后继价值和两种边界标记。
+\begin{enumerate}
+\item\label{part:gae-a} 从式\eqref{eq:nstep}出发推导有限混合目标。解释为何直接截断无限几何混合会缺少权重，并检查 $m=1$ 与 $\lambda=1$。
+\item\label{part:gae-b} 对例题计算 $\lambda=0$ 和 $\lambda=1$ 时的首步优势。说明两个值分别对应什么目标。
+\item\label{part:gae-c} 在时刻 $k$ 发生时间截断，错误使用重置观测使后继价值增加 $\Delta$。假设此前 $j$ 个转移没有边界，推导 $A_{k-j}$ 的误差。分析 $\lambda$ 对误差传播的影响。
+\item\label{part:gae-d} 实现 \texttt{compute\_gae}。输入为五个长度相同的序列以及 $\gamma,\lambda$；返回优势和价值目标。标记使用布尔值，数值输入有限，缓冲区长度大于零。价值输入在进入函数前已停止梯度。检验单步缓冲区、末步终止、时间截断、两段轨迹相邻及非法形状。
+\item\label{part:gae-e} 用有限混合公式独立验证后向实现。对一个固定轨迹改变 $\lambda$，比较真实后继价值与错误重置价值产生的结果。说明这项测试能检验哪些实现性质，以及它尚未检验哪些训练性质。
+\end{enumerate}
