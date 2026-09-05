@@ -8,3 +8,4 @@ dist/
 *.out
 *.toc
 *.synctex.gz
+.venv/

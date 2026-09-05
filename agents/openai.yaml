@@ -1,4 +1,4 @@
 interface:
   display_name: "Textbook Anything"
-  short_description: "Write and revise textbooks, chapters, and course notes"
-  default_prompt: "Use $textbook-anything to develop teaching material from these sources for the specified audience, with explanations, examples, and exercises in the requested format."
+  short_description: "Turn papers and notes into complete STEM tutorials"
+  default_prompt: "Use $textbook-anything to turn these materials into a systematic tutorial for the intended reader, with the necessary foundations, clear explanations, purposeful visuals, and exercises with solutions. Prepare the environment and complete the review rounds before delivering the requested format."

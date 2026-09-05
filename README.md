@@ -14,6 +14,8 @@ Start with a topic, or bring lecture slides, papers, and unfinished notes. textb
 
 *Multimodal Learning and Reinforcement Learning: Theory, Architectures, and Implementation. In Chinese. [See the example](examples/multimodal-learning/README.md).*
 
+A single paper can be the starting point. When it relies on an earlier method, the tutorial follows that reference, explains the necessary foundations, and returns to what the focal paper inherits or changes. The default reader is new to those specialized methods. A short opening exchange establishes the right depth; a GPT Pro run can proceed directly from the available information.
+
 ## How it works
 
 After following a worked example, can the reader solve a related problem with a different assumption? That question guides the explanations, derivations, and exercises.
@@ -21,12 +23,14 @@ After following a worked example, can the reader solve a related problem with a 
 | Purpose | Methodology | Evaluation |
 | --- | --- | --- |
 | Choose the right depth | Ask one or two focused questions about prior knowledge and the intended outcome | Can the goal be expressed as something the reader can explain, derive, or implement? |
-| Establish the learning sequence | Compare textbooks, courses, and primary sources; trace where each prerequisite is used | Are necessary ideas introduced in time, and are new claims supported? |
+| Establish the learning sequence | Compare textbooks, courses, and related papers; trace where each prerequisite is used | Are necessary ideas introduced in time, and are inherited methods distinct from the contribution? |
 | Explain the material | Begin with a concrete problem, explain the important choices, and interpret the result | Can the reader follow the reasoning without supplying a missing argument? |
 | Develop exercises and solutions | Reuse a setting while changing assumptions, checking limits, constructing counterexamples, or testing numerically | Is the problem solvable, is the solution complete, and does it test transferable understanding? |
-| Prepare the document | Keep notation and typography consistent, then compile and inspect the pages | Are equations and figures readable, and can the source be rebuilt? |
+| Prepare the document | Set up the environment, choose useful visuals, and inspect the LaTeX or HTML artifact | Are explanations, equations, and figures clear on screen and in print, and can the source be rebuilt? |
 
 Short exercises give readers a chance to check a new idea while it is still fresh. Longer chapter problems connect several ideas. A problem might first ask for a model's solution, then change a boundary condition and ask what follows. Code earns its place by checking a specific mathematical claim. The [exercise examples](references/exercise-models.md) show this in more detail.
+
+The learning goals guide how much space each part receives. Substantial tutorials go through two complete rounds of writing, artifact inspection, and revision; deeper dependencies or remaining problems call for a third. The foundations, focal method, figures, and exercises all receive attention.
 
 ## Install
 
@@ -70,7 +74,9 @@ The repository includes a [full textbook](examples/multimodal-learning/textbook.
 
 </details>
 
-The [typesetting template](references/typography.md) uses serif body text, sans-serif headings, and matching Latin and mathematical fonts. Equations break at logical steps, and figure labels follow the notation in the text. Build and test commands are in the [tool guide](scripts/README.md).
+The [typesetting template](references/typography.md) uses serif body text, sans-serif headings, and matching Latin and mathematical fonts. Equations break at logical steps, and figure labels follow the notation in the text. An [HTML tutorial example](templates/tutorial.html) adds adjustable curves, a process diagram, and expandable solutions. Missing dependencies are installed first; if the preferred toolchain cannot run, a capable HTML route preserves the same explanation and visual standards. Build and test commands are in the [tool guide](scripts/README.md).
+
+For paper figures, the workflow checks arXiv source assets against their captions and packages selected reusable originals with the tutorial ZIP, subject to the applicable license.
 
 ## What's next
 

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A first-order decay model</title>
+  <link rel="stylesheet" href="tutorial.css">
+  <script src="tutorial.js" defer></script>
+</head>
+<body>
+  <!-- Copy all three tutorial files together and replace the sample lesson. -->
+  <div class="reading-layout">
+    <nav aria-label="Contents">
+      <p class="eyebrow">A mathematical tutorial</p>
+      <a href="#question">The model</a>
+      <a href="#derive">The derivation</a>
+      <a href="#explore">Explore the rate</a>
+      <a href="#practice">Try a variation</a>
+    </nav>
+    <main>
+      <header>
+        <p class="eyebrow">Differential equations · one worked model</p>
+        <h1>A first-order<br>decay model</h1>
+        <p class="lead">How does a local rule about change determine an entire trajectory?</p>
+        <p>We will connect a rate equation to its solution, interpret the time scale, and check what happens when the rate vanishes. The only prerequisites are differentiation, integration, and the exponential function.</p>
+      </header>
+
+      <section id="question">
+        <h2>1. State the local rule</h2>
+        <p>Let <i>x</i>(<i>t</i>) be a positive quantity. Suppose its rate of decrease is proportional to its current value, with a constant rate <i>k</i> ≥ 0. We choose units so that <i>x</i>(0) = 1.</p>
+        <div class="equation" aria-label="The derivative of x with respect to t equals minus k times x, with x at zero equal to one">
+          <math display="block"><mrow><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mi>k</mi><mi>x</mi><mo>,</mo><mspace width="1em"/><mi>x</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></math>
+        </div>
+        <p>This assumption fixes the fractional rate of change. It does not say that the same absolute amount disappears in every interval.</p>
+        <figure>
+          <svg viewBox="0 0 620 115" role="img" aria-labelledby="flow-title flow-desc">
+            <title id="flow-title">Quantity, local rate, and trajectory</title>
+            <desc id="flow-desc">The current value x determines the local rate minus k x. Integrating the rate equation determines the trajectory.</desc>
+            <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#315a66"/></marker></defs>
+            <g fill="#edf3f3" stroke="#aac0c5"><rect x="8" y="25" width="150" height="52" rx="3"/><rect x="232" y="25" width="150" height="52" rx="3"/><rect x="456" y="25" width="155" height="52" rx="3"/></g>
+            <g stroke="#315a66" marker-end="url(#arrow)"><path d="M165 51 H223"/><path d="M389 51 H447"/></g>
+            <g fill="#253139" font-size="17" text-anchor="middle"><text x="83" y="57">Current value x</text><text x="307" y="57">Local rate −kx</text><text x="534" y="57">Trajectory x(t)</text></g>
+            <g fill="#58666d" font-size="12" text-anchor="middle"><text x="194" y="98">rate rule</text><text x="418" y="98">integration</text></g>
+          </svg>
+          <figcaption>The model connects a value to its local derivative. A trajectory also needs an initial condition.</figcaption>
+        </figure>
+      </section>
+
+      <section id="derive">
+        <h2>2. Recover the trajectory</h2>
+        <p>On an interval where <i>x</i> is positive, divide the differential equation by <i>x</i>. The left side is the derivative of log <i>x</i>. Integrating from 0 to <i>t</i> gives</p>
+        <div class="equation">
+          <math display="block"><mrow><mi>log</mi><mi>x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>−</mo><mi>log</mi><mi>x</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>k</mi><mi>t</mi><mo>.</mo></mrow></math>
+        </div>
+        <p class="keep-next">The initial value makes the second logarithm zero. Exponentiation then produces a positive solution for every finite <i>t</i>:</p>
+        <div class="equation">
+          <math display="block"><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>k</mi><mi>t</mi></mrow></msup><mo>.</mo></mrow></math>
+        </div>
+        <aside class="worked">
+          <h3>A check that uses the original equation</h3>
+          <p>Differentiate the result: its derivative is −<i>k</i>e<sup>−kt</sup>, which is −<i>kx</i>(<i>t</i>). The solution equals 1 at <i>t</i> = 0. Both the rate rule and the initial condition hold.</p>
+        </aside>
+        <p>For <i>k</i> &gt; 0, the time scale is 1/<i>k</i>: after that time the quantity is e<sup>−1</sup> of its initial value. At <i>k</i> = 0 the solution is constant, so this finite time scale no longer applies.</p>
+      </section>
+
+      <section id="explore">
+        <h2>3. Change the rate, keep the model</h2>
+        <p>All curves start at the same value. Predict which part of the trajectory changes as the rate increases, <span class="screen-only">then move the control to check.</span><span class="print-only">then compare the curves for the stated rates.</span></p>
+        <div class="controls">
+          <label for="rate">Decay rate k <output id="rate-value" for="rate">1.00</output></label>
+          <input id="rate" type="range" min="0" max="2" value="1" step="0.05">
+        </div>
+        <figure>
+          <svg id="decay-chart" viewBox="0 0 620 290" role="img" aria-labelledby="chart-title chart-desc">
+            <title id="chart-title">Exponential decay</title>
+            <desc id="chart-desc">The initial value is one. The horizontal axis runs from time zero to five. Increasing k makes the curve fall faster; at zero it stays constant.</desc>
+            <g stroke="#d8e0e2" stroke-width="1"><path d="M60 35 H585 M60 140 H585 M60 245 H585"/></g>
+            <path d="M60 25 V245 H595" fill="none" stroke="#68777e"/>
+            <g fill="#58666d" font-size="13"><text x="20" y="40">1.0</text><text x="20" y="145">0.5</text><text x="20" y="250">0.0</text><text x="55" y="270">0</text><text x="580" y="270">5</text><text x="280" y="286">Time t</text><text x="60" y="18">x(t)</text></g>
+            <path d="M60.00 35.00 L65.25 40.18 L70.50 45.24 L75.75 50.17 L81.00 54.98 L86.25 59.68 L91.50 64.25 L96.75 68.71 L102.00 73.07 L107.25 77.31 L112.50 81.45 L117.75 85.49 L123.00 89.43 L128.25 93.27 L133.50 97.02 L138.75 100.67 L144.00 104.23 L149.25 107.71 L154.50 111.10 L159.75 114.40 L165.00 117.63 L170.25 120.77 L175.50 123.84 L180.75 126.83 L186.00 129.75 L191.25 132.60 L196.50 135.37 L201.75 138.08 L207.00 140.72 L212.25 143.29 L217.50 145.80 L222.75 148.25 L228.00 150.64 L233.25 152.97 L238.50 155.24 L243.75 157.46 L249.00 159.62 L254.25 161.73 L259.50 163.78 L264.75 165.79 L270.00 167.75 L275.25 169.65 L280.50 171.51 L285.75 173.33 L291.00 175.10 L296.25 176.82 L301.50 178.51 L306.75 180.15 L312.00 181.75 L317.25 183.31 L322.50 184.83 L327.75 186.32 L333.00 187.77 L338.25 189.18 L343.50 190.56 L348.75 191.90 L354.00 193.21 L359.25 194.49 L364.50 195.74 L369.75 196.96 L375.00 198.14 L380.25 199.30 L385.50 200.43 L390.75 201.53 L396.00 202.60 L401.25 203.65 L406.50 204.67 L411.75 205.67 L417.00 206.64 L422.25 207.58 L427.50 208.51 L432.75 209.41 L438.00 210.29 L443.25 211.14 L448.50 211.98 L453.75 212.80 L459.00 213.59 L464.25 214.37 L469.50 215.12 L474.75 215.86 L480.00 216.58 L485.25 217.28 L490.50 217.97 L495.75 218.63 L501.00 219.28 L506.25 219.92 L511.50 220.54 L516.75 221.14 L522.00 221.73 L527.25 222.31 L532.50 222.87 L537.75 223.41 L543.00 223.95 L548.25 224.47 L553.50 224.97 L558.75 225.47 L564.00 225.95 L569.25 226.42 L574.50 226.88 L579.75 227.33 L585.00 227.76" fill="none" stroke="#84979d" stroke-width="1.8" stroke-dasharray="7 4"/>
+            <path d="M60.00 35.00 L65.25 50.17 L70.50 64.25 L75.75 77.31 L81.00 89.43 L86.25 100.67 L91.50 111.10 L96.75 120.77 L102.00 129.75 L107.25 138.08 L112.50 145.80 L117.75 152.97 L123.00 159.62 L128.25 165.79 L133.50 171.51 L138.75 176.82 L144.00 181.75 L149.25 186.32 L154.50 190.56 L159.75 194.49 L165.00 198.14 L170.25 201.53 L175.50 204.67 L180.75 207.58 L186.00 210.29 L191.25 212.80 L196.50 215.12 L201.75 217.28 L207.00 219.28 L212.25 221.14 L217.50 222.87 L222.75 224.47 L228.00 225.95 L233.25 227.33 L238.50 228.60 L243.75 229.79 L249.00 230.89 L254.25 231.91 L259.50 232.85 L264.75 233.73 L270.00 234.54 L275.25 235.30 L280.50 236.00 L285.75 236.65 L291.00 237.25 L296.25 237.81 L301.50 238.33 L306.75 238.82 L312.00 239.26 L317.25 239.68 L322.50 240.06 L327.75 240.42 L333.00 240.75 L338.25 241.06 L343.50 241.34 L348.75 241.61 L354.00 241.85 L359.25 242.08 L364.50 242.29 L369.75 242.49 L375.00 242.67 L380.25 242.84 L385.50 242.99 L390.75 243.14 L396.00 243.27 L401.25 243.40 L406.50 243.51 L411.75 243.62 L417.00 243.72 L422.25 243.81 L427.50 243.90 L432.75 243.98 L438.00 244.05 L443.25 244.12 L448.50 244.18 L453.75 244.24 L459.00 244.30 L464.25 244.35 L469.50 244.40 L474.75 244.44 L480.00 244.48 L485.25 244.52 L490.50 244.55 L495.75 244.58 L501.00 244.61 L506.25 244.64 L511.50 244.67 L516.75 244.69 L522.00 244.71 L527.25 244.73 L532.50 244.75 L537.75 244.77 L543.00 244.79 L548.25 244.80 L553.50 244.82 L558.75 244.83 L564.00 244.84 L569.25 244.85 L574.50 244.87 L579.75 244.87 L585.00 244.88" fill="none" stroke="#84979d" stroke-width="1.8" stroke-dasharray="2 4"/>
+            <path id="decay-curve" d="M60 35 L112.5 117.6 L165 167.7 L217.5 198.1 L270 216.6 L322.5 227.8 L375 234.5 L427.5 238.7 L480 241.2 L532.5 242.7 L585 243.6" fill="none" stroke="#315a66" stroke-width="3"/>
+          </svg>
+          <figcaption>The dashed curve uses k = 0.5; the dotted curve uses k = 1.5. The solid curve uses the selected rate.</figcaption>
+          <figcaption id="curve-caption">For k = 1.00, x(5) = 0.0067. Values are computed from the analytic solution.</figcaption>
+        </figure>
+        <noscript><p>The static curve shows k = 1. Enable JavaScript to vary the rate; the derivation and exercises remain available without it.</p></noscript>
+      </section>
+
+      <section id="practice">
+        <h2>4. Try a variation</h2>
+        <ol class="problems">
+          <li>For k &gt; 0, find the time at which the quantity reaches half its initial value. What changes when k = 0?</li>
+          <li>Change the initial value to a positive number a. Derive the trajectory and decide whether the half-life changes.</li>
+          <li>Euler's method gives x<sub>n+1</sub> = (1 − kh)x<sub>n</sub> for a step h &gt; 0. For k &gt; 0, when do nonnegative iterates decrease without changing sign? When do they converge to zero even if their signs alternate?</li>
+        </ol>
+        <details class="hint"><summary>Hint: separate the physical condition from numerical stability</summary><p>For the last question, examine the multiplier 1 − kh. Nonnegative decay and convergence depend on different conditions on that multiplier.</p></details>
+        <details class="solution"><summary>Worked solutions</summary>
+          <p><strong>1.</strong> Solving e<sup>−kt</sup> = 1/2 gives t = log 2/k. When k = 0, the value remains 1 and never reaches 1/2.</p>
+          <p><strong>2.</strong> The solution is ae<sup>−kt</sup>. Setting it equal to a/2 cancels a, so the half-life is unchanged for k &gt; 0.</p>
+          <p><strong>3.</strong> Nonnegative monotone decay occurs for 0 &lt; kh ≤ 1. Convergence to zero requires |1 − kh| &lt; 1, or 0 &lt; kh &lt; 2. In the interval 1 &lt; kh &lt; 2 the iterates alternate signs, which is inconsistent with a positive decaying quantity even though the numerical sequence converges.</p>
+        </details>
+      </section>
+      <footer>All curves are computed from the stated model. The diagram and lesson are editable local sources.</footer>
+    </main>
+  </div>
+</body>
+</html>

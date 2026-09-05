@@ -19,3 +19,5 @@ jobs:
         run: python3 scripts/check_skill.py
       - name: Run numerical example tests
         run: python3 -m unittest discover -s examples/tests -v
+      - name: Check archive extraction behavior
+        run: python3 -m unittest discover -s tests -v

@@ -2,6 +2,8 @@
 
 Research the questions that determine what the reader needs to learn. For a new subject, establish which concepts are essential, where later arguments use them, and which credible teaching sequences are available. For a local revision, investigate the dependencies and claims affected by that revision.
 
+For a focal paper, use [paper study](paper-study.md) to follow citations that supply required methods or assumptions. Teach the missing prerequisites down to the agreed reader baseline and return to the focal contribution. For original illustrations, inspect [paper figures](paper-figures.md) and the versioned source archive before recreating them.
+
 ## Build a useful source base
 
 Start with established STEM textbooks and actual university course materials for foundations. Use original papers and official documentation for research findings or implementation details. Search from several relevant directions: the standard treatment, an alternative explanation or formulation, and the practical task the reader should eventually perform. Expand the search when an essential concept or competing account remains uncovered.

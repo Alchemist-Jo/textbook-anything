@@ -4,6 +4,8 @@ Read [exercise models](exercise-models.md) when designing a substantial problem 
 
 Start with the understanding the reader should demonstrate. Then choose a task that distinguishes that understanding from recall or pattern matching. Work out its solution before accepting the final wording.
 
+For a reader new to the specialty, progress from a fully worked case to a closely related or partly completed problem, then to an independent variation. Revisit important ideas in later sections. Connect each exercise to a learning outcome in the requirement table and use its solution to check that the preceding explanation supplied the necessary knowledge. See [learning design](learning-design.md) for the broader sequence.
+
 Let a worked example make the method understandable, then give the reader a related problem with something new to decide. Explain the method choice and interpret the result in the example. In the exercise, supply the setting clearly and leave the reasoning to the reader. Avoid filling the question with so many hints that only substitution remains.
 
 Linked subquestions can reuse one model, dataset, source passage, design, or case. A later part might alter an assumption, compare explanations, construct a counterexample, or apply the result in a new setting. Use the number of parts the problem needs. Unrelated questions grouped under one heading do not become an integrated exercise.

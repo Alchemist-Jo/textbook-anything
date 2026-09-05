@@ -9,6 +9,15 @@ Use this for a substantial project. Fill only the fields that affect the work.
 - Inputs and material to preserve:
 - Deliverables and working directory:
 - Relevant resource or access limits:
+- Interview completed or skipped, with learner assumptions:
+- Planned rounds, two or three for a substantial tutorial:
+
+## Requirements after the reader brief
+
+| Learning outcome | Required foundation or prior method | Source | Planned emphasis | Explanation or visual | Practice | Assessment | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+
+Make the emphasis column approximate and adapt it to the reader. Update the status after every full round. Use complete, needs revision, or blocked with a concrete reason.
 
 ## Structure and coverage
 
@@ -26,6 +35,13 @@ Identify the reviewed files or version. Record findings and checks that matter; 
 
 | Location | Finding | Action | Recheck result |
 | --- | --- | --- | --- |
+
+Use [the round record](round-record.md) for the two or three full rounds when appropriate.
+
+## Selected paper figures
+
+| Article and version | Original path and figure number | Tutorial location | Credit or license | Conversion or annotation | Bundled path |
+| --- | --- | --- | --- | --- | --- |
 
 ## Delivery status
 

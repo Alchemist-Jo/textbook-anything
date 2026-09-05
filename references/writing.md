@@ -2,13 +2,17 @@
 
 A textbook should sound like a knowledgeable teacher taking a question seriously. Give readers enough guidance to follow a difficult step, and enough room to think when the next step is within reach. Use the subject's normal terminology without making every sentence read like a definition.
 
+The standard applies equally to LaTeX, HTML, PDF, figure labels, interactive explanations, and printed answers. Format choices should make the argument easier to read. They do not excuse terse fragments, missing conditions, decorative captions, or weaker explanations in a fallback.
+
 ## Let the explanation develop
 
 Before writing a section, identify the question it answers and the point where the reader is likely to need help. Begin with the problem or the unfinished reasoning from the preceding section. Introduce a technical term when it helps answer that question, then use it consistently.
 
 Give a paragraph a clear purpose: define an object, justify a step, compare alternatives, interpret a result, or explain a limitation. Connect paragraphs through the ideas themselves. A transition such as “The derivation assumed independent samples; we now need to account for their covariance” tells the reader what changes. “We will now explore this topic in greater depth” does not.
 
-Allocate space according to conceptual difficulty. Spend time on why a method applies or why a tempting argument fails. Routine algebra may need only a line. Avoid giving every subsection the same length or repeating an introduction and a summary around every result.
+In a paper tutorial, explain an inherited method where the reader first needs it. Introduce the relevant objective or mechanism, connect it to the preceding foundations, then show what the focal paper retains or changes. A citation should support that explanation; it cannot supply the explanation by itself. Keep the paper's claims, established background, and tutorial examples distinguishable without repeatedly interrupting the lesson with production notes.
+
+Allocate space according to conceptual difficulty and the [learning plan](learning-design.md). Spend time on why a method applies or why a tempting argument fails. Routine algebra may need only a line. Avoid giving every subsection the same length or repeating an introduction and a summary around every result. Re-read the whole document for balance: the core method should receive enough explanation after the foundations have been established.
 
 ## Guide the worked example
 
