@@ -42,6 +42,8 @@ Choose your agent when prompted. The teaching workflow, writing guidance, and de
 
 ## Use
 
+Recommended use: install this skill for use with GPT Pro in the web app.
+
 Describe the topic, the reader, and the result you want:
 
 ```text

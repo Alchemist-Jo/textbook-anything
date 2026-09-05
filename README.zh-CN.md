@@ -42,6 +42,8 @@ npx skills add Alchemist-Jo/textbook-anything --skill textbook-anything -g
 
 ## 使用
 
+推荐用法：安装此 skill 后，在网页端 GPT Pro 中使用。
+
 直接说明主题、读者和想要的产物：
 
 ```text
