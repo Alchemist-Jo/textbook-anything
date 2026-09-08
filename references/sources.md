@@ -6,7 +6,7 @@ For a focal paper, use [paper study](paper-study.md) to follow citations that su
 
 ## Build a useful source base
 
-Start with established STEM textbooks and actual university course materials for foundations. Use original papers and official documentation for research findings or implementation details. Search from several relevant directions: the standard treatment, an alternative explanation or formulation, and the practical task the reader should eventually perform. Expand the search when an essential concept or competing account remains uncovered.
+Start with established STEM textbooks and actual university course materials for foundations. Use original papers and official documentation for research findings or implementation details. In lite, focus on source passages required for the selected learning outcome. Standard and deep can add alternative explanations, formulations, and neighboring approaches as their scope warrants. Expand the search when a required concept or substantive claim remains unsupported; optional breadth follows [the resource tier](resource-tiers.md).
 
 Check the source itself before relying on it. Record its title, author or institution, version or date, location, and the pages or sections actually read. Confirm that the cited passage supports the particular statement. A syllabus helps locate a lecture; it does not establish that the lecture was available or read. An abstract may establish a paper's topic without supporting a detailed account of its method.
 

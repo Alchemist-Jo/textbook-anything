@@ -2,6 +2,8 @@
 
 A short paper can justify a long lesson when the reader needs to reconstruct its assumptions and methods. Set the lesson's boundary by what the reader should be able to do after studying it. Add background that enables that outcome and remove detail that distracts from it.
 
+For a new field, first use [learning from scratch](learning-from-scratch.md) to identify the reader's specific gaps and the path to an entry outcome. Apply the chosen [resource tier](resource-tiers.md) to the amount of material and investigation. Keep learning difficulty and model budget separate: lite may still need a careful explanation for a novice.
+
 ## Plan backward from the outcome
 
 Choose an observable task: explain a mechanism, reproduce a derivation, compare two methods under stated conditions, implement a small case, or interpret evidence. Work out what would count as a convincing answer. Then identify the concepts and practice the reader needs to produce it.
@@ -24,6 +26,8 @@ Use the planning table to assign approximate emphasis, including explanation and
 
 These percentages are an editorial starting point, not an educational law or an acceptance test. Change them after the reader brief and initial research. A proof-centered topic needs more mathematical development; an implementation lesson may need more code and experiments. Solutions can sit in an appendix, but still count toward the reading burden.
 
+For a field-entry unit, allocate the most attention to the blocking gap rather than preserving this paper-oriented split. In lite, a short orientation, one complete prerequisite-to-application path, and an independent check can be sufficient for a bounded goal. Standard and deep can add neighboring methods and richer transfer tasks. No tier should use a long list of readings in place of the promised explanation.
+
 Avoid two common imbalances: a long background survey that barely reaches the paper, and a close paraphrase of the paper that preserves all its unexplained assumptions. A prerequisite belongs in the main text when the next argument needs it. Optional depth can go into a sidebar, appendix, or linked section.
 
 ## Give the lesson a coherent sequence
@@ -39,3 +43,5 @@ Use short retrieval questions to revisit key distinctions, worked or partly comp
 Provide hints separately from full solutions. Feedback should identify the failed assumption or reasoning step and show how to recover. A solution that only gives the final expression leaves the reader unable to diagnose their own attempt. See [exercises](exercises.md) for problem contracts and answer review.
 
 At the end of a round, compare the tutorial against its outcomes: where did the reader learn each required component, where did they combine them, and where were they asked to use the result independently? Fix a missing connection in the lesson, not by adding another claim that the tutorial is comprehensive.
+
+Distinguish coverage from learning evidence. The material can provide a complete explanation and a checked answer while the learner's ability remains unassessed. Record actual attempts separately, and adapt future guidance to those attempts when they are available.

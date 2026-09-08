@@ -4,7 +4,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-[![v0.1](https://img.shields.io/badge/version-v0.1-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.2](https://img.shields.io/badge/version-v0.2-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
 **Turn something you want to learn into a textbook you can read, work through, and build on.**
 
@@ -17,6 +17,26 @@ Start with a topic, or bring lecture slides, papers, and unfinished notes. textb
 *Multimodal Learning and Reinforcement Learning: Theory, Architectures, and Implementation. In Chinese. [See the example](examples/multimodal-learning/README.md).*
 
 A single paper can be the starting point. When it relies on an earlier method, the tutorial follows that reference, explains the necessary foundations, and returns to what the focal paper inherits or changes. The default reader is new to those specialized methods. A short opening exchange establishes the right depth; a GPT Pro run can proceed directly from the available information.
+
+## Find a starting point in a new field
+
+The first obstacle is often not knowing which piece is missing. You may follow the code but miss an assumption in the objective, or carry out a calculation without knowing why the field asks that question.
+
+textbook-anything starts with a concrete entry goal and identifies the gaps that block it: field vocabulary, mathematical representations, procedures, conventions, or interpretation of evidence. It teaches the needed background before using it, then moves from a worked example to guided practice and an independent variation.
+
+Learning from scratch still builds on what the reader already knows. An unanswered check remains unassessed; producing a tutorial does not establish that its reader has mastered the material. See the [first-order systems example](examples/field-entry/README.md) for a complete small unit.
+
+## Choose a model-budget tier
+
+| Tier | Intended outcome | Work included | Complete rounds |
+| --- | --- | --- | --- |
+| Lite | Resolve one bounded entry problem | Necessary prerequisites, one complete explanation, a worked case, and independent practice with an answer | 1 |
+| Standard, the default | Learn a coherent topic or chapter | The main background and method, a useful comparison, progressive practice, and a transfer check | 2 |
+| Deep | Enter a broader field or study a demanding paper | Connected approaches, disagreements and limits, and mathematical or practical perspectives where useful | 3 |
+
+The tiers control research breadth and review effort. Every tier retains necessary reasoning, useful visuals, answers, and artifact checks. Actual usage depends on the material and environment. Model budget is separate from study time, and a GPT Pro run can use lite.
+
+When the requested field is large and the budget is small, plan complete learning units and state what this delivery covers and what remains. Moving to another tier builds on accepted explanations, sources, and real learner attempts. [Read the tier policy](references/resource-tiers.md).
 
 ## How it works
 
@@ -32,7 +52,7 @@ After following a worked example, can the reader solve a related problem with a 
 
 Short exercises give readers a chance to check a new idea while it is still fresh. Longer chapter problems connect several ideas. A problem might first ask for a model's solution, then change a boundary condition and ask what follows. Code earns its place by checking a specific mathematical claim. The [exercise examples](references/exercise-models.md) show this in more detail.
 
-The learning goals guide how much space each part receives. Substantial tutorials go through two complete rounds of writing, artifact inspection, and revision; deeper dependencies or remaining problems call for a third. The foundations, focal method, figures, and exercises all receive attention.
+Learning goals and actual prerequisite gaps guide how much space each part receives. The selected tier sets the review rounds. Each round includes writing, artifact inspection, corrections, and rechecking across the agreed scope, including foundations, methods, figures, and exercises.
 
 ## Install
 
@@ -46,13 +66,22 @@ Choose your agent when prompted. The teaching workflow, writing guidance, and de
 
 Recommended use: install this skill for use with GPT Pro in the web app.
 
-Describe the topic, the reader, and the result you want:
+Describe the topic, reader, model-budget tier, and result you want. Standard is used when no tier is specified:
 
 ```text
-Use textbook-anything to write a chapter on Fourier analysis for
+Use textbook-anything at the standard tier to write a chapter on Fourier analysis for
 second-year engineering students who know calculus and linear algebra.
 Explain the key derivations, include worked examples, and develop a connected
 problem set with separate solutions. Deliver LaTeX and PDF.
+```
+
+You can also start with a specific gap:
+
+```text
+Use textbook-anything at the lite tier. I know basic calculus and am new to
+dynamical systems. Explain state, parameter, and initial condition through
+one worked decay model, then give me an independent variation and its solution.
+Leave numerical methods for the next unit.
 ```
 
 Or bring an existing draft:
@@ -84,7 +113,7 @@ For paper figures, the workflow checks arXiv source assets against their caption
 
 ## What's next
 
-This is v0.1, ready for people to try.
+This is v0.2. Start with the tier that fits your model budget and learning goal.
 
 - Content: add examples from more STEM courses and improve difficult explanations and chapter connections.
 - Delivery: refine fonts, diagrams, and pagination, and make the source easier to edit.

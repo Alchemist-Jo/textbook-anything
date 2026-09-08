@@ -9,8 +9,18 @@ Use this for a substantial project. Fill only the fields that affect the work.
 - Inputs and material to preserve:
 - Deliverables and working directory:
 - Relevant resource or access limits:
+- Model-budget tier: lite / standard / deep; default standard:
+- Explicit hard limit, if supplied; otherwise no fabricated numeric cap:
+- Learner study time, if supplied, recorded separately from model budget:
 - Interview completed or skipped, with learner assumptions:
-- Planned rounds, two or three for a substantial tutorial:
+- Planned complete rounds: lite 1 / standard 2 / deep 3, or user override:
+
+## Entry gaps
+
+| Required knowledge or skill | Why the target task needs it | Evidence or assumption about the learner | Status: demonstrated / partial / unassessed | Teaching action |
+| --- | --- | --- | --- | --- |
+
+Distinguish a blocking prerequisite from optional context. A missing response remains unassessed. A small model budget does not justify assuming more prior knowledge.
 
 ## Requirements after the reader brief
 
@@ -36,7 +46,7 @@ Identify the reviewed files or version. Record findings and checks that matter; 
 | Location | Finding | Action | Recheck result |
 | --- | --- | --- | --- |
 
-Use [the round record](round-record.md) for the two or three full rounds when appropriate.
+Use [the round record](round-record.md) for the planned full rounds. Record deferred scope explicitly, and use [learning progress](learning-progress.md) when continuing across sessions or tiers.
 
 ## Selected paper figures
 

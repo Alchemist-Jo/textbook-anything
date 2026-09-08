@@ -4,7 +4,11 @@ Read [exercise models](exercise-models.md) when designing a substantial problem 
 
 Start with the understanding the reader should demonstrate. Then choose a task that distinguishes that understanding from recall or pattern matching. Work out its solution before accepting the final wording.
 
+Every tier retains an independent check and its reasoned answer. Lite can use one well-chosen variation after a worked case; standard adds practice across the main path and a transfer problem; deep compares conditions, methods, or evidence where those comparisons serve the goal. Task counts are secondary to what the reader has to decide.
+
 For a reader new to the specialty, progress from a fully worked case to a closely related or partly completed problem, then to an independent variation. Revisit important ideas in later sections. Connect each exercise to a learning outcome in the requirement table and use its solution to check that the preceding explanation supplied the necessary knowledge. See [learning design](learning-design.md) for the broader sequence.
+
+When an attempt is available, diagnose the specific gap behind an error and give feedback on that step. If no attempt is available, supply the exercise and answer without assigning a learner-performance status. Reading the solution or reproducing the same numbers is not enough evidence to claim transfer.
 
 Let a worked example make the method understandable, then give the reader a related problem with something new to decide. Explain the method choice and interpret the result in the example. In the exercise, supply the setting clearly and leave the reasoning to the reader. Avoid filling the question with so many hints that only substitution remains.
 

@@ -3,6 +3,7 @@
 Keep this working record outside the student's tutorial and public README.
 
 - Round and focus:
+- Model-budget tier, agreed scope, and explicit remaining limit if known:
 - Reviewed artifact or source version:
 - Requirement rows covered:
 - Sources or dependencies revisited:
@@ -15,5 +16,6 @@ Keep this working record outside the student's tutorial and public README.
 
 - Actual emphasis compared with the plan:
 - Requirements complete / needing revision / blocked:
-- Reason for a third round, if any:
+- Learner attempts actually observed, separate from author checks:
+- Reason and budget for any additional full round:
 - Remaining targeted work:

@@ -1,6 +1,8 @@
-# Two or three complete tutorial rounds
+# Complete review rounds within the model budget
 
 After the reader brief is settled, populate the [requirement table](../templates/project-brief.md). It is the shared plan for the requested scope. In the GPT Pro or user-requested no-interview route, fill it from the supplied information and explicit assumptions, then proceed without waiting for an opening interview.
+
+Use the chosen [resource tier](resource-tiers.md): lite defaults to one complete round, standard to two, and deep to three. Standard is the default. The tier changes the agreed scope and breadth of work; every round still includes the steps below. An explicit user review budget overrides the preset.
 
 ## What makes a complete round
 
@@ -21,9 +23,9 @@ A round may reuse valid sources and checks from unaffected material, but it stil
 | --- | --- | --- |
 | 1 | Is there a complete lesson a reader can follow? | Resolve the scope, build the prerequisite sequence, draft all requested components, and produce the first full artifact. |
 | 2 | Can the intended reader understand and use it independently? | Re-read at the stated baseline, repair conceptual jumps, solve the problems, compare claims to sources, and refine prose and visual layout throughout. |
-| 3, when needed | Do difficult cases or integration changes expose remaining weaknesses? | Challenge deep dependency chains, test meaningful limits, check changed conventions, and inspect the final reading and print formats together. |
+| 3, for deep or an agreed extension | Do difficult cases or integration changes expose remaining weaknesses? | Challenge deep dependency chains, test meaningful limits, check changed conventions, and inspect the final reading and print formats together. |
 
-Use two rounds for substantial work by default. Plan three for a dense paper with several required methods, extensive derivations, or a substantially new interactive or rendering route; also add a third when round two reveals issues that need another full pass. The user can request a different budget. Scale the rounds to a requested chapter or review rather than expanding the assignment.
+For lite, complete the first round's full production and review cycle on one bounded learning unit. Standard adds the second full review, and deep adds the third. A finding may require targeted corrections without restarting the entire document. If an additional full round would exceed the selected budget, explain the trade-off rather than silently increasing the tier. Scale all rounds to the agreed chapter or tutorial scope.
 
 ## End-of-round self-review
 
@@ -31,8 +33,10 @@ For each requirement, state whether it is complete, needs revision, or is blocke
 
 Check the planned emphasis against the actual document. Did background consume the method's space? Do figures repeat one another? Do solutions require knowledge absent from the lesson? Is an important caveat buried while routine details dominate? Correct the allocation where it harms learning.
 
+For field entry, check that every blocking gap is either taught in the unit or explicitly outside the agreed outcome. Check for a demonstration, a chance to work with less help, and an independent task with a reasoned answer. Keep author checks separate from real learner performance. An unattempted entry check stays unassessed.
+
 Self-review is author review. Numerical tests, visual inspection, and independent review remain distinct forms of evidence. Keep detailed records outside learner-facing and public promotional text.
 
 ## Completion
 
-Finish when the requested content is covered and known blocking problems in reasoning, source attribution, solvability, or readability are resolved. Reaching round two or three is not proof of completion. After the planned rounds, fix remaining problems in the affected scope; if a specific missing capability cannot be resolved, deliver the usable work with that limitation accurately stated rather than starting an unbounded series of full rounds.
+Finish when the agreed content is covered and known blocking problems in reasoning, source attribution, solvability, or readability are resolved. Reaching the planned round count is not proof of completion. After the planned rounds, fix remaining problems in the affected scope within explicit limits. If a hard limit or missing capability prevents completion, deliver the useful work and identify unmet requirements. Preserve sources, notation, and progress for continuation rather than starting over in the next session.

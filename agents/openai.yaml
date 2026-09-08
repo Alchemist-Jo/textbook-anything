@@ -1,4 +1,4 @@
 interface:
   display_name: "Textbook Anything"
-  short_description: "Turn papers and notes into complete STEM tutorials"
-  default_prompt: "Use $textbook-anything to turn these materials into a systematic tutorial for the intended reader, with the necessary foundations, clear explanations, purposeful visuals, and exercises with solutions. Prepare the environment and complete the review rounds before delivering the requested format."
+  short_description: "Enter a new field with a tutorial matched to your budget"
+  default_prompt: "Use $textbook-anything to build a systematic tutorial from my starting knowledge. Use the requested lite, standard, or deep model-budget tier, defaulting to standard. Identify prerequisite gaps, teach a complete path to the selected goal, and include clear visuals, worked examples, and independent practice with solutions."

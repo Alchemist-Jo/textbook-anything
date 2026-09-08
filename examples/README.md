@@ -1,5 +1,7 @@
 # Examples
 
+The [field-entry example](field-entry/README.md) shows how to identify a newcomer's gaps, teach a complete lite unit, and extend it at standard or deep without repeating completed work.
+
 The [multimodal learning textbook](multimodal-learning/README.md) is the main reading example. The two smaller source examples show how a derivation, an exercise, its solution, and a numerical check fit together.
 
 | Example | Teaching focus | Files |

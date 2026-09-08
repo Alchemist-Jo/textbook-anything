@@ -2,6 +2,8 @@
 
 Read the focal paper as a source of questions and dependencies. Its order was chosen to present a research contribution; a learner may need a different order to understand it.
 
+Use [learning from scratch](learning-from-scratch.md) when the paper is the reader's entry to the field. Orient them to the problem, identify blocking gaps, and select the prerequisite path for the agreed outcome. In lite, that outcome can be one central mechanism rather than the entire paper; state the boundary explicitly and preserve any broader requirements for continuation.
+
 ## Establish what the paper assumes
 
 Identify the task, objects, notation, training or optimization objective, algorithm, and evaluation claims. For every named method that does substantive work, find the relevant reference and determine what is inherited. Label a citation as a required prerequisite, a comparison, or optional context. A single sentence in the paper can contain an entire prerequisite lesson.
