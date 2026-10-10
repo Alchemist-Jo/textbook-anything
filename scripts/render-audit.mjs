@@ -175,7 +175,8 @@ try {
     const scale = Math.min(0.35, 2400 / r.height);
     const { data: ov } = await s("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: 0, width, height: r.height, scale } });
     r.overview = join(out, `${width}-overview.png`); writeFileSync(r.overview, Buffer.from(ov, "base64"));
-    await s("Runtime.evaluate", { expression: `(() => { const st = document.createElement("style"); st.id = "__ra_hide"; st.textContent = ${JSON.stringify(HIDE)}; document.head.append(st); return new Promise(r => requestAnimationFrame(() => setTimeout(r, 100))); })()`, awaitPromise: true });
+    // A timer, because requestAnimationFrame stalled in the second target of headless Chrome on macOS.
+    await s("Runtime.evaluate", { expression: `(() => { const st = document.createElement("style"); st.id = "__ra_hide"; st.textContent = ${JSON.stringify(HIDE)}; document.head.append(st); return new Promise(r => setTimeout(r, 150)); })()`, awaitPromise: true });
     for (let y = 0; y < r.height; y += tile) {
       const h = Math.min(tile, r.height - y);
       const { data } = await s("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y, width, height: h, scale: 1 } });

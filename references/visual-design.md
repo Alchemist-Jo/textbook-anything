@@ -29,7 +29,7 @@ The lesson theme ships this scale:
 | h2 | 40px | 29px | section headings |
 | h1 | 66px | 39px | title |
 
-The reading theme uses 13, 15 and 16px for small, ui and body text, 18.5px for subsection headings, and clamped section and title sizes.
+The reading theme, as `scripts/render-reading.cjs` builds it with `assets/report-theme.css` on top of `assets/reading.css`, uses 13 and 15px for small and ui text, 18px body text (17px at 390), 21px for leads and subsection headings, and clamped section and title sizes. Card titles inside the reading map and method path inherit the body size and differ by weight.
 
 New text picks a size from the scale through `var(--fs-small)`, `var(--fs-ui)` or a heading rule. Emphasis inside a size uses weight or colour. Relative units inside a nested element are the usual way an extra size appears: `.82em` inside 15px text renders at 12.3px, a seventh size that is also below the minimum. Use the scale variables instead.
 
@@ -120,7 +120,7 @@ Cite a source with a short marker at the first claim it supports, and reuse the 
 
 The lesson theme has a dark blue opening above white reading cards on a light blue-grey page. Chinese text uses Fandol Song for prose, Fandol Hei for headings and figure labels, and Fandol Fang for code, embedded as WOFF2 subsets. Latin text uses Times New Roman for prose, Arial for headings and labels, and the system monospace for code. KaTeX or native MathML sets formulas.
 
-The reading theme uses a system sans-serif at 16px and offers four palettes: forest, cobalt, plum and saffron. Each palette's accent and secondary colours meet 4.5:1 on its own panels.
+The reading theme shares the lesson theme's fonts and dark opening through `assets/report-theme.css`, and offers four palettes: forest, cobalt, plum and saffron. Each palette's accent and secondary colours meet 4.5:1 on its own panels.
 
 ## Inspect the rendered page
 
