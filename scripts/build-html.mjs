@@ -195,9 +195,10 @@ try {
     const katexRoot = path.dirname(require.resolve("katex/package.json"));
     const cssPath = path.join(katexRoot, "dist", "katex.min.css");
     // Modern supported browsers use WOFF2. Omit unused fallback font formats.
-    const css = fs.readFileSync(cssPath, "utf8").replace(/src:([^;]*);/g, (whole, sources) => {
+    // A declaration ends at ";" or at the "}" that closes its @font-face rule; stopping only at ";" would merge the rules.
+    const css = fs.readFileSync(cssPath, "utf8").replace(/src:([^;}]*)/g, (whole, sources) => {
       const woff2 = sources.split(",").find(source => source.includes(".woff2"));
-      return woff2 ? "src:" + woff2 + ";" : whole;
+      return woff2 ? "src:" + woff2 : whole;
     });
     append(head, "<style>" + inlineCSS(css, path.dirname(cssPath)) + "</style>");
     const license = fs.readFileSync(path.join(katexRoot, "LICENSE"), "utf8").replaceAll("--", "- -");

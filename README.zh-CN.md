@@ -4,7 +4,7 @@
 
 [English](README.md) | **简体中文**
 
-[![v0.3](https://img.shields.io/badge/version-v0.3-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.4](https://img.shields.io/badge/version-v0.4-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
 **把想学的内容，写成一份讲得明白、可以动手做题的教材。**
 
@@ -20,7 +20,7 @@
 
 取材到交付的流程补入视频元数据、时间字幕、分段选帧、紧凑来源说明、HTML 字体内嵌与可控制的机制动画，保留原有 LaTeX 资源和模型额度档位。[打开交互讲义](examples/field-entry/interactive.html)或查看 [Agent 工作流程](references/agent-workflow.md)。
 
-## 从哪里开始学
+## 新领域的起点
 
 进入一个新领域时，困难往往在于还不知道自己缺了哪一部分。可能看得懂代码，却不清楚目标函数的假设；也可能会做计算，但不知道领域里为什么要研究这个问题。
 
@@ -40,7 +40,7 @@ textbook-anything 会先选定一个具体的入门目标，再判断哪些缺�
 
 如果范围很大而额度有限，会先把它安排成几个可独立学习的单元，明确本次完成什么、哪些内容后续继续。升级档位时沿用已有讲解、来源和真实练习记录。[查看档位说明](references/resource-tiers.md)。
 
-## 怎样编写
+## 编写方法
 
 读者看懂一道例题之后，能否独立处理稍有变化的问题，是这份 skill 关心的事。因此，讲解、推导和习题会围绕同一个学习目标展开。
 
@@ -55,6 +55,19 @@ textbook-anything 会先选定一个具体的入门目标，再判断哪些缺�
 随文练习帮助读者及时检查一个新概念；章末综合题则把前面学过的内容联系起来。比如，先求出一个模型的解，再改变边界条件，看结论怎样变化。需要编程时，让代码验证题目中的具体判断。[习题示范](references/exercise-models.md)中有更完整的说明。
 
 全文按学习目标和实际知识缺口分配篇幅，再按所选档位完成编写、成品检查与修订。每一轮都检查基础知识、核心方法、图示与习题，并修正发现的问题。
+
+## Agent 流程与渲染检查
+
+[SKILL.md](SKILL.md) 是面向长程 agent 的分阶段指南。它先确定教学简报，维护覆盖、证据、图像和设计台账，再按明确阈值拆分长材料：视频超过 20 分钟或字幕超过 300 条，论文超过 30 页，教程超过四章。各段交给并行子代理，按固定格式返回，由主 agent 整合成一条教学顺序。交付前，每道习题都要解出，每个代码示例都要运行。
+
+HTML 成品遵循共享的[视觉设计](references/visual-design.md)规则：每个宽度最多六级字号，单一阅读栏，在 390px 屏幕上图内文字不小于 12px，对比度满足 WCAG AA。`scripts/render-audit.mjs` 在渲染后的页面上检查这些约束并保存截图，agent 随后逐张查看：
+
+```sh
+npm run build:learning
+npm run audit:learning
+```
+
+如果只需把一篇论文、一段视频、一个代码库或一份数据讲解成单个 HTML 页面，不需要课程结构，使用 [html-report](https://github.com/Alchemist-Jo/html-report)。两个 skill 共用课程主题、构建器和渲染检查脚本。
 
 ## 安装
 
@@ -113,7 +126,7 @@ npx skills add Alchemist-Jo/textbook-anything --skill textbook-anything -g
 
 ## 接下来
 
-目前是 v0.2，欢迎从适合自己额度和学习目标的档位开始试用。
+目前是 v0.4，欢迎从适合自己额度和学习目标的档位开始试用。
 
 - 内容：补充不同理工科课程的例子，把难懂的推导和章节联系讲得更清楚。
 - 交付：改善字体、图示和分页，让 PDF 好读，源码也方便修改。

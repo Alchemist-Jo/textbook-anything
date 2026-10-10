@@ -6,10 +6,10 @@ figure svg { display: block; width: 100%; height: auto; }
 .worked { margin: 28px 0; padding: 22px 26px; background: #edf3fc; border-left: 3px solid #7397c8; }
 .worked h3 { margin-top: 0; }
 .worked p:last-child { margin-bottom: 0; }
-.controls { padding: 18px 22px; background: #edf3fc; border-radius: 10px; font-family: var(--sans); font-size: 14px; }
+.controls { padding: 18px 22px; background: #edf3fc; border-radius: 10px; font-family: var(--sans); font-size: var(--fs-ui); }
 .controls label { display: flex; gap: 20px; align-items: center; }
 .controls input[type="range"] { min-width: 100px; width: min(100%,240px); accent-color: var(--accent); }
-.controls button { min-height: 42px; padding: 7px 14px; border: 1px solid #b3c5dd; border-radius: 7px; background: white; color: var(--accent); font-size: 13px; }
+.controls button { min-height: 42px; padding: 7px 14px; border: 1px solid #b3c5dd; border-radius: 7px; background: white; color: var(--accent); font-size: var(--fs-ui); }
 .controls button:disabled { opacity: .65; cursor: default; }
 .curve-readout { display: block; margin-top: 7px; }
 .problems { padding-left: 24px; }

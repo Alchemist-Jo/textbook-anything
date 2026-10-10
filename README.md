@@ -4,7 +4,7 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-[![v0.3](https://img.shields.io/badge/version-v0.3-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.4](https://img.shields.io/badge/version-v0.4-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
 **Turn something you want to learn into a textbook you can read, work through, and build on.**
 
@@ -40,7 +40,7 @@ The tiers control research breadth and review effort. Every tier retains necessa
 
 When the requested field is large and the budget is small, plan complete learning units and state what this delivery covers and what remains. Moving to another tier builds on accepted explanations, sources, and real learner attempts. [Read the tier policy](references/resource-tiers.md).
 
-## How it works
+## Teaching method
 
 After following a worked example, can the reader solve a related problem with a different assumption? That question guides the explanations, derivations, and exercises.
 
@@ -55,6 +55,19 @@ After following a worked example, can the reader solve a related problem with a 
 Short exercises give readers a chance to check a new idea while it is still fresh. Longer chapter problems connect several ideas. A problem might first ask for a model's solution, then change a boundary condition and ask what follows. Code earns its place by checking a specific mathematical claim. The [exercise examples](references/exercise-models.md) show this in more detail.
 
 Learning goals and actual prerequisite gaps guide how much space each part receives. The selected tier sets the review rounds. Each round includes writing, artifact inspection, corrections, and rechecking across the agreed scope, including foundations, methods, figures, and exercises.
+
+## Agent workflow and rendered inspection
+
+[SKILL.md](SKILL.md) is a staged guide for a long-running agent. It settles a teaching brief, keeps coverage, evidence, figure and design ledgers, and splits long material at stated thresholds: a video longer than 20 minutes or with more than 300 subtitle entries, a paper longer than 30 pages, a tutorial of more than four chapters. Segments run in parallel subagents under a fixed return contract, and the main agent integrates them into one teaching sequence. Every exercise is solved and every code example is run before delivery.
+
+HTML output follows the shared [visual design](references/visual-design.md) rules: six text sizes per width, one reading column, figure labels of 12px or more on a 390px screen, and WCAG AA contrast. `scripts/render-audit.mjs` checks them on the rendered page and saves screenshots, which the agent then opens one by one:
+
+```sh
+npm run build:learning
+npm run audit:learning
+```
+
+To explain one paper, video, code base or dataset as a single HTML page without a curriculum, use [html-report](https://github.com/Alchemist-Jo/html-report). The two skills share the lesson theme, the builder and the audit.
 
 ## Install
 
@@ -113,9 +126,9 @@ The [typesetting template](references/typography.md) uses serif body text, sans-
 
 For paper figures, the workflow checks arXiv source assets against their captions and packages selected reusable originals with the tutorial ZIP, subject to the applicable license.
 
-## What's next
+## Roadmap
 
-This is v0.2. Start with the tier that fits your model budget and learning goal.
+This is v0.4. Start with the tier that fits your model budget and learning goal.
 
 - Content: add examples from more STEM courses and improve difficult explanations and chapter connections.
 - Delivery: refine fonts, diagrams, and pagination, and make the source easier to edit.

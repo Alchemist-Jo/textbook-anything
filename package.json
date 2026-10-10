@@ -5,9 +5,11 @@
   "scripts": {
     "build:html": "node scripts/build-html.mjs",
     "build:learning": "node scripts/build-html.mjs templates/tutorial.html build/tutorial.html",
-    "test": "node --test scripts/test-html.cjs"
+    "test": "node --test scripts/test-html.cjs",
+    "audit": "node scripts/render-audit.mjs",
+    "audit:learning": "node scripts/render-audit.mjs build/tutorial.html --widths 1440,390 --out build/audit/tutorial --print"
   },
-  "version": "0.3.0",
+  "version": "0.4.0",
   "engines": {
     "node": ">=20"
   },

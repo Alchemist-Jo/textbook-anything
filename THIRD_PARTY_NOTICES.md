@@ -10,6 +10,6 @@ Fandol v0.3 fonts, by Clerk Ma and Jie Su, are supplied under GPL-3.0 with the G
 
 fontTools and Brotli are build-time dependencies used to subset and compress fonts. Their respective license files are supplied by their installed distributions. No Python dependency code is bundled in the portable source archive.
 
-Figure-design guidance was informed by figure-designer and pre-submission-reviewer from https://github.com/HKUSTDial/Supervisor-Skills, locally labelled CC-BY-4.0. The guidance has been restated and adapted for teaching HTML.
+Figure-design guidance was informed by figure-designer and pre-submission-reviewer from https://github.com/HKUSTDial/Supervisor-Skills, licensed CC BY-NC-SA 4.0. The guidance has been restated and adapted for teaching HTML.
 
 The teaching workflow was informed by youtube-render-pdf. Visual direction was informed by a user-provided HTML reference. No original reference HTML text, images or script code is bundled.

@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
 const {execFileSync} = require('node:child_process');
+const vm = require('node:vm');
 const makeDOM = require('./dom-test.cjs');
 const root = path.resolve(__dirname, '..');
 
@@ -55,6 +56,7 @@ test('reduced motion keeps manual exploration and full solutions available', () 
 });
 test('printing exposes solutions and restores the prior disclosure state', () => {
   const page = example();
+  vm.runInContext(fs.readFileSync(path.join(root, 'assets/lesson.js'), 'utf8'), page.context);
   const solution = page.document.querySelector('details.solution');
   assert.equal(Boolean(solution.open), false);
   page.context.window.dispatchEvent(new page.context.window.Event('beforeprint'));

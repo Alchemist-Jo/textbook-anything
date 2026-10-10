@@ -63,4 +63,11 @@
     block.append(button);
   });
   if (nav) nav.setAttribute("aria-label", labels.nav);
+  // Print every hint, solution and source list, then restore what the reader had open.
+  let disclosureState = [];
+  addEventListener("beforeprint", () => {
+    disclosureState = [...document.querySelectorAll("details")].map(node => [node, node.open]);
+    disclosureState.forEach(([node]) => { node.open = true; });
+  });
+  addEventListener("afterprint", () => { disclosureState.forEach(([node, open]) => { node.open = open; }); });
 })();

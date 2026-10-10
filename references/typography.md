@@ -26,4 +26,4 @@ Inspect actual rendered pages for glyph coverage, mathematical weight, line brea
 
 ## HTML counterpart
 
-The supplied HTML uses the same Chinese Fandol roles, with build-time font subsetting. Its serif prose, sans-serif headings and scientific figure labels retain their roles across screen and print. See [HTML design](html-design.md) and [HTML authoring](html-authoring.md) for the implementation.
+The supplied HTML uses the same Chinese Fandol roles, with build-time font subsetting. Its serif prose, sans-serif headings and scientific figure labels retain their roles across screen and print. See [visual design](visual-design.md) and [HTML authoring](html-authoring.md) for the implementation.

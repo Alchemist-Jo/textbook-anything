@@ -63,6 +63,16 @@ When PDF export is requested and the environment permits its browser renderer, t
 
 The exporter waits for fonts and math, expands solutions and rejects missing assets. Respect access policies; an unavailable export is reported accurately without blocking the working HTML delivery.
 
+## Inspect the rendered HTML
+
+With Node 22 or newer and a local Chrome or Chromium, render the built file at true phone and desktop widths:
+
+~~~sh
+node scripts/render-audit.mjs build/tutorial.html --widths 1440,390 --out build/audit/tutorial --print
+~~~
+
+The script saves screenshot tiles, an overview per width, `report.json` and, with `--print`, `print.pdf`. It exits with status 1 on page overflow, more than six text sizes, text below 12px, contrast below WCAG AA, overlapping or clipped figure labels, broken or enlarged images, raw Markdown or TeX, or an internal link without a target. Open the tiles afterwards; the script does not judge alignment, spacing or figure crops. See [visual design](../references/visual-design.md).
+
 ## Collect source figures
 
 Resolve the article version first, then use either the arXiv source or an archive already supplied by the user:

@@ -22,11 +22,11 @@ A short working note with concept, source location and unresolved issue is suffi
 
 ## 3. Split and integrate
 
-Split long inputs at chapters or coherent concepts. Videos longer than 20 minutes or with more than 300 subtitle entries need segments. Use a small overlap where reasoning crosses boundaries.
+Split long inputs at chapters or coherent concepts when they cross a threshold in SKILL.md under "Long Material", for example a video longer than 20 minutes or with more than 300 subtitle entries. Use a small overlap where reasoning crosses boundaries.
 
 Each segment retains its goal, core claims, mechanism, formulas/code, visual locations and ambiguities. Read the active segment with shared notation and coverage notes. Integrate the whole outline, fill missing prerequisites and remove repetition.
 
-Use subagents only when current authorization permits them. Supply bounded segments and concrete return requirements, then integrate one coherent narrative. Sequential segmentation remains valid.
+When subagents are available, run the segments in parallel with bounded scopes and the return contract in SKILL.md, then integrate one coherent narrative. Without subagents, process the segments in order under the same contract.
 
 ## 4. Explain and connect to use
 

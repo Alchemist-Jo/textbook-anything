@@ -17,7 +17,7 @@ jobs:
           python-version: '3.11'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: python3 -m pip install -r requirements-html.txt
       - name: Check skill identity and links
@@ -28,3 +28,16 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Check HTML build and interaction logic
         run: npm test
+      - name: Build the HTML tutorial
+        run: npm run build:learning
+      - name: Audit the rendered tutorial at 1440 and 390px
+        run: npm run audit:learning
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rendered-tutorial
+          path: |
+            build/tutorial.html
+            build/audit/tutorial/report.json
+            build/audit/tutorial/*-overview.png
+            build/audit/tutorial/print.pdf

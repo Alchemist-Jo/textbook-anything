@@ -4,7 +4,7 @@
   const play = document.querySelector("#play-trajectory");
   let time = 0, playing = false, frame = null, last = null;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function number(value) { return Math.abs(value) < .001 && value !== 0 ? value.toExponential(2) : value.toFixed(4); }
+  function number(value) { return (Math.abs(value) < .001 && value !== 0 ? value.toExponential(2) : value.toFixed(4)).replace(/^-/, "\u2212"); }
   function render() {
     const state = decayState(Number(slider.value), time);
     document.querySelector("#decay-curve").setAttribute("d", state.path);
@@ -41,12 +41,7 @@
   document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
   new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stop(); }).observe(document.querySelector("#explore"));
   if (reduced) { play.disabled = true; play.title = "Reduced motion is enabled. Use the time control or advance button."; }
-  let previouslyOpen = [];
-  window.addEventListener("beforeprint", () => {
-    stop();
-    previouslyOpen = [...document.querySelectorAll("details")].map(node => [node, node.open]);
-    previouslyOpen.forEach(([node]) => { node.open = true; });
-  });
-  window.addEventListener("afterprint", () => { previouslyOpen.forEach(([node, open]) => { node.open = open; }); });
+  // assets/lesson.js opens and restores the solutions around printing.
+  window.addEventListener("beforeprint", stop);
   render();
 })();

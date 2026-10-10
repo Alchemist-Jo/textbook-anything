@@ -7,7 +7,7 @@ These sources inform the guide; they are not evidence that this skill has improv
 - [CMU Eberly Center](https://www.cmu.edu/teaching/assessment/basics/alignment.html): align outcomes, teaching activities and assessments.
 - [KaTeX](https://katex.org/docs/api): build-time math rendering with HTML and MathML.
 - [W3C Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html): controls for moving and automatically changing content.
-- [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills), locally labelled CC-BY-4.0: figure purpose, concrete layouts, consistent typography, dual encoding, meaningful captions and final-size inspection.
+- [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills), licensed CC BY-NC-SA 4.0: figure purpose, concrete layouts, consistent typography, dual encoding, meaningful captions and final-size inspection.
 
 The HTML layout was informed by a user-provided reference and independently implemented. Fandol type follows the original PDF template; the supplied font license and embedding exception are preserved. Optional interactions extend the teaching sequence while retaining static explanations.
 
