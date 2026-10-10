@@ -118,7 +118,7 @@ Cite a source with a short marker at the first claim it supports, and reuse the 
 
 ## Shipped themes and fonts
 
-The lesson theme has a dark blue opening above white reading cards on a light blue-grey page. Chinese text uses Fandol Song for prose, Fandol Hei for headings and figure labels, and Fandol Fang for code, embedded as WOFF2 subsets. Latin text uses Times New Roman for prose, Arial for headings and labels, and the system monospace for code. KaTeX or native MathML sets formulas.
+The lesson theme has a dark blue opening above white reading cards on a light blue-grey page. Chinese text uses Fandol Song for prose, Fandol Hei for headings and figure labels, and Fandol Fang for code, embedded as WOFF2 subsets. Latin text uses Times New Roman for prose, Arial for headings and labels, and the system monospace for code. Each Fandol face declares a `unicode-range` covering CJK characters, fullwidth forms and circled numbers, and stands first in its font stack, so Latin characters fall through to the Latin font. With Arial first, Chrome on Linux, where Arial resolves to Liberation Sans, set some Chinese runs in the Latin font and showed empty boxes even after Fandol had loaded. KaTeX or native MathML sets formulas.
 
 The reading theme shares the lesson theme's fonts and dark opening through `assets/report-theme.css`, and offers four palettes: forest, cobalt, plum and saffron. Each palette's accent and secondary colours meet 4.5:1 on its own panels.
 

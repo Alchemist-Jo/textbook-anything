@@ -1,8 +1,8 @@
-@font-face { font-family: "Learning Fandol Song"; src: url("skill:fonts/FandolSong-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Learning Fandol Song"; src: url("skill:fonts/FandolSong-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "Learning Fandol Hei"; src: url("skill:fonts/FandolHei-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Learning Fandol Hei"; src: url("skill:fonts/FandolHei-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: "Learning Fandol Fang"; src: url("skill:fonts/FandolFang-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Learning Fandol Song"; src: url("skill:fonts/FandolSong-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+2460-24FF, U+2E80-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
+@font-face { font-family: "Learning Fandol Song"; src: url("skill:fonts/FandolSong-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+2460-24FF, U+2E80-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
+@font-face { font-family: "Learning Fandol Hei"; src: url("skill:fonts/FandolHei-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+2460-24FF, U+2E80-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
+@font-face { font-family: "Learning Fandol Hei"; src: url("skill:fonts/FandolHei-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+2460-24FF, U+2E80-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
+@font-face { font-family: "Learning Fandol Fang"; src: url("skill:fonts/FandolFang-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+2460-24FF, U+2E80-33FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FE10-FE1F, U+FE30-FE4F, U+FF00-FFEF; }
 :root {
   color-scheme: light;
   --paper: #f2f5fb;
@@ -23,9 +23,9 @@
   --figure-arrow: #b2cfdf;
   --figure-selected: #394452;
   --figure-selected-stroke: #d6bc85;
-  --sans: Arial, "Learning Fandol Hei", sans-serif;
-  --serif: "Times New Roman", "Learning Fandol Song", serif;
-  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Learning Fandol Fang", monospace;
+  --sans: "Learning Fandol Hei", Arial, sans-serif;
+  --serif: "Learning Fandol Song", "Times New Roman", serif;
+  --mono: "Learning Fandol Fang", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   /* Type scale: six sizes per width. Headings and the lead use clamp() or the narrow-screen overrides below. */
   --fs-small: 13px;
   --fs-ui: 15px;
