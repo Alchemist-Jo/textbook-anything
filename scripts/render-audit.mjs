@@ -187,6 +187,8 @@ try {
     delete r.boxes;
     if (wantPrint && width === widths[0]) {
       await s("Emulation.setEmulatedMedia", { media: "print" });
+      // Print layout can request font faces again; printing before they load falls back to a system font, which on Linux has no CJK glyphs.
+      await s("Runtime.evaluate", { expression: "document.fonts.ready.then(() => new Promise(r => setTimeout(r, 400)))", awaitPromise: true });
       const { data } = await s("Page.printToPDF", { printBackground: true, preferCSSPageSize: true });
       const name = join(out, "print.pdf"); writeFileSync(name, Buffer.from(data, "base64")); r.print = name;
     }
