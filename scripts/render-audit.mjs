@@ -212,6 +212,7 @@ try {
   }
   writeFileSync(join(out, "report.json"), JSON.stringify(report, null, 2));
 } finally {
-  ws.close(); proc.once("exit", () => rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 })); proc.kill();
+  // Chrome helpers on Linux can keep writing to the profile after the browser exits; a leftover temp profile is harmless.
+  ws.close(); proc.once("exit", () => { try { rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 }); } catch {} }); proc.kill();
 }
 process.exitCode = status;
