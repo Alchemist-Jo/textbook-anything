@@ -22,7 +22,7 @@ def check(root: Path) -> list[str]:
         if not re.search(r"(?m)^description: \S.+$", fields):
             problems.append("SKILL.md: missing description")
     for path in root.rglob("*.md"):
-        if any(part in {".git", "build", "dist"} for part in path.relative_to(root).parts):
+        if any(part in {".git", "build", "dist", "node_modules", ".venv"} for part in path.relative_to(root).parts):
             continue
         text = path.read_text(encoding="utf-8")
         for target in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", text):

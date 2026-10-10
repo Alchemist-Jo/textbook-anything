@@ -9,3 +9,5 @@ dist/
 *.toc
 *.synctex.gz
 .venv/
+
+node_modules/

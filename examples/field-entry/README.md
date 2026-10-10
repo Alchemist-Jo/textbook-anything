@@ -29,7 +29,7 @@ The state `x` changes with time. The parameter `k` is held fixed and has units o
 
 The proposed solution is `x(t) = x₀ exp(−kt)`. Differentiating it gives `−k x₀ exp(−kt)`, which equals `−kx(t)`. At time zero the exponential is one, so the initial condition also holds. These two checks connect the expression to the local rule and its starting value.
 
-For `x₀ = 2` and `k = 1`, the amount is one at `t = log 2`. The initial amount sets the vertical scale, while the rate changes how quickly the trajectory decreases. The [HTML lesson](../../templates/tutorial.html) contains a local-rate diagram and computed curves for different rates.
+For `x₀ = 2` and `k = 1`, the amount is one at `t = log 2`. The initial amount sets the vertical scale, while the rate changes how quickly the trajectory decreases. The [HTML lesson](interactive.html) contains a local-rate diagram and computed curves for different rates.
 
 ![Initial amount and decay rate have different roles](decay.svg)
 

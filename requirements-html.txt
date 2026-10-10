@@ -1,0 +1,2 @@
+fonttools[woff]==4.61.0
+brotli==1.2.0

@@ -39,17 +39,29 @@ Use a new output directory for each render. The command writes one PNG per page 
 
 ## HTML with the same teaching depth
 
-Copy `tutorial.html`, `tutorial.css`, and `tutorial.js` from [templates](../templates/tutorial.html) together into a project. They contain a small decay lesson with native MathML, editable SVG, a parameter control, and printable solutions. Open the HTML directly in a browser; it has no CDN dependency. Replace the sample content with the requested tutorial and retain the useful reading and print conventions.
+The worked source is templates/tutorial.html, with native MathML, editable SVG, rate and model-time controls, and printable solutions. Shared assets provide the reading and presentation layout and embedded Fandol font subsets.
 
-To export PDF, prepare Playwright and Chromium in the project environment if they are missing:
+Prepare Node 20+ and a Python environment, then build an offline standalone file:
 
-```sh
+~~~sh
+npm ci --ignore-scripts --no-audit --no-fund
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-html.txt
+SKILL_HTML_PYTHON=.venv/bin/python node scripts/build-html.mjs templates/tutorial.html build/tutorial.html
+npm test
+~~~
+
+The tests check calculations, isolated DOM events and asset embedding. They do not establish browser appearance. Inspect the permitted final rendering and narrow layout separately. The ready-made example is examples/field-entry/interactive.html.
+
+When PDF export is requested and the environment permits its browser renderer, the existing helper can export the built HTML:
+
+~~~sh
 .venv/bin/python -m pip install playwright
 .venv/bin/python -m playwright install chromium
-.venv/bin/python scripts/build_html_pdf.py templates/tutorial.html --out build/tutorial.pdf
-```
+.venv/bin/python scripts/build_html_pdf.py build/tutorial.html --out build/tutorial.pdf
+~~~
 
-The exporter waits for local assets, fonts, and an available MathJax renderer; it expands solutions and rejects missing assets or page errors before producing the PDF. Native MathML needs no additional math package. Inspect the browser and print results separately. When installation or rendering is unavailable, deliver the complete working HTML and its local assets with accurate export instructions.
+The exporter waits for fonts and math, expands solutions and rejects missing assets. Respect access policies; an unavailable export is reported accurately without blocking the working HTML delivery.
 
 ## Collect source figures
 

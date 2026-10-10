@@ -1,0 +1,21 @@
+{
+  "name": "textbook-anything",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build:html": "node scripts/build-html.mjs",
+    "build:learning": "node scripts/build-html.mjs templates/tutorial.html build/tutorial.html",
+    "test": "node --test scripts/test-html.cjs"
+  },
+  "version": "0.3.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "katex": "0.16.22",
+    "parse5": "7.3.0"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.13"
+  }
+}

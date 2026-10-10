@@ -4,11 +4,11 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-[![v0.2](https://img.shields.io/badge/version-v0.2-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.3](https://img.shields.io/badge/version-v0.3-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
 **Turn something you want to learn into a textbook you can read, work through, and build on.**
 
-Start with a topic, or bring lecture slides, papers, and unfinished notes. textbook-anything arranges the material around the reader's background, explains where the equations come from, and develops examples and connected exercises with full solutions. It produces a PDF and editable source for university mathematics, physics, computing, and engineering. A single chapter is a good place to start; a whole book is within scope too.
+Start with a topic, or bring lecture slides, papers, and unfinished notes. textbook-anything arranges the material around the reader's background, explains where the equations come from, and develops examples and connected exercises with full solutions. It produces the requested HTML or PDF with editable source for university mathematics, physics, computing, and engineering. A single chapter is a good place to start; a whole book is within scope too.
 
 [Read the 166-page example](examples/multimodal-learning/textbook.pdf) · [Install](#install) · [Open the skill](SKILL.md)
 
@@ -17,6 +17,8 @@ Start with a topic, or bring lecture slides, papers, and unfinished notes. textb
 *Multimodal Learning and Reinforcement Learning: Theory, Architectures, and Implementation. In Chinese. [See the example](examples/multimodal-learning/README.md).*
 
 A single paper can be the starting point. When it relies on an earlier method, the tutorial follows that reference, explains the necessary foundations, and returns to what the focal paper inherits or changes. The default reader is new to those specialized methods. A short opening exchange establishes the right depth; a GPT Pro run can proceed directly from the available information.
+
+The source-to-artifact workflow now includes video metadata and subtitle acquisition, segmented keyframe inspection, compact source notes, embedded HTML fonts and controlled explanatory animation. The existing LaTeX resources and model-budget tiers remain available. [Open the interactive lesson](examples/field-entry/interactive.html) or inspect the [agent workflow](references/agent-workflow.md).
 
 ## Find a starting point in a new field
 

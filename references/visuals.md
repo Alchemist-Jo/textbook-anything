@@ -45,3 +45,5 @@ Keep values, scores, probabilities, indices, and masks distinct. A selection dia
 Test controls at their default and meaningful endpoint values, with keyboard input as well as a pointer. Labels and plotted data must update together. Reveal controls should leave complete answers available in print. Check mobile wrapping, figure clipping, contrast, and link targets.
 
 Inspect the browser page and the exported PDF separately. A readable interactive layout can become a cramped print page; provide print rules and a static state that preserves the main lesson. See the [HTML starter](../templates/tutorial.html) for an example using local CSS, SVG, MathML, and a small parameter control.
+
+For video frames, apply [timestamped acquisition](video-learning.md). For playback, flow and parameter effects, use [explanatory animation](animation.md). Preserve source evidence, a static reading state and useful control over the process.

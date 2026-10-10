@@ -1,4 +1,6 @@
 interface:
   display_name: "Textbook Anything"
-  short_description: "Enter a new field with a tutorial matched to your budget"
-  default_prompt: "Use $textbook-anything to build a systematic tutorial from my starting knowledge. Use the requested lite, standard, or deep model-budget tier, defaulting to standard. Identify prerequisite gaps, teach a complete path to the selected goal, and include clear visuals, worked examples, and independent practice with solutions."
+  short_description: "从材料到可独立学习和实践的系统教材。"
+  default_prompt: "使用 $textbook-anything，检查来源并制作完整、可验证的学习资料，按需使用图示、公式、实践和参考解。"
+policy:
+  allow_implicit_invocation: false

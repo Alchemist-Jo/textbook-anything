@@ -4,11 +4,11 @@
 
 [English](README.md) | **简体中文**
 
-[![v0.2](https://img.shields.io/badge/version-v0.2-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/releases/latest) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
+[![v0.3](https://img.shields.io/badge/version-v0.3-315a66?style=flat-square)](https://github.com/Alchemist-Jo/textbook-anything/blob/main/SKILL.md) [![MIT](https://img.shields.io/badge/license-MIT-647467?style=flat-square)](LICENSE)
 
 **把想学的内容，写成一份讲得明白、可以动手做题的教材。**
 
-给一个主题，也可以附上课件、论文或已有讲义。textbook-anything 会根据读者基础安排章节，把公式的来由讲清楚，配上例题、图示和有联系的综合习题，最后交付 PDF 与可编辑源码。适合大学数学、物理、计算机和工程课程，可以写一整本，也可以只补好某一章。
+给一个主题，也可以附上课件、论文或已有讲义。textbook-anything 会根据读者基础安排章节，把公式的来由讲清楚，配上例题、图示和有联系的综合习题，按要求交付 HTML 或 PDF 与可编辑源码。适合大学数学、物理、计算机和工程课程，可以写一整本，也可以只补好某一章。
 
 [阅读 166 页示例教材](examples/multimodal-learning/textbook.pdf) · [安装](#安装) · [查看 skill](SKILL.md)
 
@@ -17,6 +17,8 @@
 *《多模态学习与强化学习：理论、架构与实现》。[查看示例](examples/multimodal-learning/README.md)。*
 
 起点也可以只有一篇论文。如果正文直接用到一个前置方法，教程会沿引用找到它，补足理解它所需的概念，再回到当前论文，说明继承了什么、改变了什么。默认按读者尚不熟悉这些专业背景来安排深度，开场用简短问答确认；GPT Pro 使用时可直接根据已有信息开始。
+
+取材到交付的流程补入视频元数据、时间字幕、分段选帧、紧凑来源说明、HTML 字体内嵌与可控制的机制动画，保留原有 LaTeX 资源和模型额度档位。[打开交互讲义](examples/field-entry/interactive.html)或查看 [Agent 工作流程](references/agent-workflow.md)。
 
 ## 从哪里开始学
 

@@ -35,3 +35,7 @@ Native MathML can display formulas without a network service. For a large TeX-he
 Open the HTML and check its navigation, math, figures, controls, and solutions. Test at both a normal desktop width and a narrow reading width. When PDF is requested and Chromium is available, use [the HTML PDF helper](../scripts/README.md). Inspect the print result as well as the browser page.
 
 If PDF rendering is also unavailable, deliver the complete HTML bundle and state that PDF export remains unavailable. Do not reduce the tutorial to an outline, silently omit formulas, or claim that an unrendered file was checked. Keep all local CSS, scripts, images, and required fonts with the HTML in the ZIP.
+
+## Standalone HTML route
+
+HTML is an available primary format as well as an environment fallback. The declared Node dependencies and requirements-html.txt support templates/tutorial.html and scripts/build-html.mjs. Prepare a project environment, build a representative file, and inspect allowed renderings. The compiler embeds local resources and fonts; no companion skill is required.

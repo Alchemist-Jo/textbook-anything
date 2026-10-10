@@ -23,3 +23,7 @@ Read the source before deciding how it should appear on the page. A table may ne
 Keep production metadata and working source records separate from the student's main text. Preserve ordinary citations, scientifically relevant limitations, and attribution. A textbook does not need agent names, generation statistics, build logs, or editing history on its title page.
 
 Inspect actual rendered pages for glyph coverage, mathematical weight, line breaks, figure labels, and spacing. If a font changes, check both the equations and pagination again.
+
+## HTML counterpart
+
+The supplied HTML uses the same Chinese Fandol roles, with build-time font subsetting. Its serif prose, sans-serif headings and scientific figure labels retain their roles across screen and print. See [HTML design](html-design.md) and [HTML authoring](html-authoring.md) for the implementation.

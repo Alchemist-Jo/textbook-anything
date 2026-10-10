@@ -15,9 +15,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: python3 -m pip install -r requirements-html.txt
       - name: Check skill identity and links
         run: python3 scripts/check_skill.py
       - name: Run numerical example tests
         run: python3 -m unittest discover -s examples/tests -v
       - name: Check archive extraction behavior
         run: python3 -m unittest discover -s tests -v
+      - name: Check HTML build and interaction logic
+        run: npm test
